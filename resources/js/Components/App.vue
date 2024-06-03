@@ -10,6 +10,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Добавьте стили для компонента здесь */
-</style>
+<style scoped></style>
