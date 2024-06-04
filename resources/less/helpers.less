@@ -1,0 +1,61 @@
+.flex
+{
+    display: flex;
+    gap: 20px;
+}
+
+.pointer
+{
+    cursor: pointer !important;
+}
+.box--small:not(:last-child)
+{
+    margin-bottom: 10px;
+}
+.box:not(:last-child)
+{
+    margin-bottom: 20px;
+}
+
+.box2x:not(:last-child)
+{
+    margin-bottom: 40px;
+}
+
+.box4x:not(:last-child)
+{
+    margin-bottom: 80px;
+}
+.absolute
+{
+    position: absolute !important;
+}
+
+.relative
+{
+    position: relative !important;
+}
+
+.flex-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.image (@path)
+{
+    background-image: url('/resources/img/@{path}');
+}
+.row
+{
+    margin-bottom: 0;
+
+    &:last-child
+    {
+        margin-bottom: (-1 * 20px) !important;
+    }
+
+    & > *
+    {
+        margin-bottom: (20px) !important;
+    }
+}
