@@ -13,9 +13,8 @@
     @vite(['resources/less/app.less', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app"></div>
-    @yield('content')
-
-    @vite(['resources/js/app.js'])
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </body>
 </html>
