@@ -1,20 +1,44 @@
 <template>
     <div>
         <section-text-image :img="'путь/к/изображению.jpg'">
-            <template #title> title</template>
-            <template #text> text</template>
+            <template #title></template>
+            <template #text> </template>
         </section-text-image>
-        <section-services>
+
+        <section-services-items :items="yourItemsArray">
             <template #title> title2</template>
             <template #text> text2</template>
-        </section-services>
+        </section-services-items>
 
+        <section-image-text :img="'путь/к/изображению.jpg'">
+            <template #title></template>
+            <template #text> </template>
+        </section-image-text>
+
+        <section-swiper-faq> </section-swiper-faq>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 import SectionTextImage from '../section/SectionTextImage.vue';
-import SectionServices from '../section/SectionServices.vue';
+import SectionImageText from '../section/SectionImageText.vue';
+
+import SectionServicesItems from '../section/SectionServicesItems.vue';
+import SectionSwiperFaq from '../section/SectionSwiperFaq.vue';
 
 
+const yourItemsArray = [
+    {
+        image: 'путь/к/изображению1.jpg',
+        title: 'Заголовок 1',
+        text: 'Текст 1'
+    },
+    {
+        image: 'путь/к/изображению2.jpg',
+        title: 'Заголовок 2',
+        text: 'Текст 2'
+    },
+];
 </script>
