@@ -1,0 +1,34 @@
+.card{
+    gap: 20px;
+    border-radius: 20px;
+
+    display: block;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    background-color: @White;
+
+    &__text
+    {
+        padding: 20px;
+    }
+    &__background-small
+    {
+    // .image("slider_image.jpg");
+    aspect-ratio: (129 / 123);
+    background-size: cover;
+    }
+    &__background-middle
+    {
+    .image("slider_image.jpg");
+    aspect-ratio: (380 / 200);
+    background-size: cover;
+    }
+    &__background-large
+    {
+    .image("slider_image.jpg");
+    aspect-ratio: (387 / 260);
+    background-size: cover;
+    }
+
+}

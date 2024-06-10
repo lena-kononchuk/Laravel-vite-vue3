@@ -1,0 +1,84 @@
+.button{
+        font-size: 16px;
+        font-weight: 400;
+        font-family: "Avenir Next", sans-serif;
+        display: inline-block;
+
+        box-sizing: border-box;
+        height: 30px;
+        padding: 5px 12px;
+        line-height: 32px;
+        gap: 4px;
+
+        border-radius: 20px;
+
+        cursor: pointer;
+        text-align: center;
+
+        white-space: nowrap;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        border: none;
+
+        color: @White;
+        background: linear-gradient(90.49deg, #53269D 0%, #6D31D0 100.2%);
+
+        &--primary{
+            padding: 16px 22px;
+            line-height: 18px;
+            height: 48px;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 88px;
+            border: 1px solid #FFEB80;
+            color: @Purple;
+            background: linear-gradient(96.1deg, #FFEB80 -22.07%, #FDBFA3 123.25%);
+            transition: all @duration;
+
+
+            &:hover{
+                color: @Yellow;
+                background: linear-gradient(90.49deg, #53269D 0%, #6D31D0 100.2%);
+            }
+        }
+
+        &--yellow
+        {
+            padding: 18px 34px;
+            height: 60px;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+
+            border-radius: 30px;
+            background: @Yellow ;
+            color: @Purple;
+            border: 1px solid #FFEB80;
+
+
+            &:hover{
+                color: @Yellow;
+                background: linear-gradient(180deg, #828CDE -21.43%, #6D31D0 201.93%);
+            }
+        }
+        &--purple{
+            background: #6D31D080;
+            padding: 0 5px;
+            font-family: "Montserrat", sans-serif;
+            line-height: 20px;
+            // box-shadow: 0px 0px 80px 0px #023F76;
+
+        }
+        &--purple-light {
+            font-family: Montserrat;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19.5px;
+            text-align: left;
+            color: @Yellow;
+            background: #6D31D080;
+
+
+
+        }
+    }

@@ -1,5 +1,7 @@
 <template>
     <div>
+        <section-hero-swiper></section-hero-swiper>
+
         <section-text-image :img="'путь/к/изображению.jpg'">
             <template #title></template>
             <template #text> </template>
@@ -24,7 +26,7 @@ import { ref } from 'vue';
 
 import SectionTextImage from '../section/SectionTextImage.vue';
 import SectionImageText from '../section/SectionImageText.vue';
-
+import SectionHeroSwiper from '../section/SectionHeroSwiper.vue';
 import SectionServicesItems from '../section/SectionServicesItems.vue';
 import SectionSwiperFaq from '../section/SectionSwiperFaq.vue';
 
