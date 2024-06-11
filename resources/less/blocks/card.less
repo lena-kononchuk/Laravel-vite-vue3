@@ -12,23 +12,18 @@
     {
         padding: 20px;
     }
-    &__background-small
-    {
-    // .image("slider_image.jpg");
-    aspect-ratio: (129 / 123);
-    background-size: cover;
+    &--small,
+    &--middle,
+    &--large {
+    border-radius: 19px 19px 19px 0;
     }
-    &__background-middle
-    {
-    .image("slider_image.jpg");
-    aspect-ratio: (380 / 200);
-    background-size: cover;
+    &--large {
+
     }
-    &__background-large
-    {
-    .image("slider_image.jpg");
-    aspect-ratio: (387 / 260);
-    background-size: cover;
+    &--large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     }
 
 }

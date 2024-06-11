@@ -8,6 +8,8 @@
 
 @BaseFontSize: 16px;
 @widthHD: 1440px;
+@duration: .5s;
+
 
 
 body,
@@ -28,12 +30,20 @@ body
     font-size: BaseFontSize;
 }
 
-.images
+.image
 {
     background-position: center;
     background-color: @DarkBlue;
     background-repeat: no-repeat;
     aspect-ratio: (580 / 490);
+}
+.background
+{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  height: 70vh; /* 70% высоты видимой области экрана */
+    width: 50vw;
 
 }
 
@@ -41,6 +51,16 @@ body
 @import "blocks/section";
 @import "blocks/wrapper";
 @import "blocks/card";
+@import "blocks/button";
+@import "blocks/swiper";
 
 
+.hero{
+    aspect-ratio: (1440 / 740);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+}
 

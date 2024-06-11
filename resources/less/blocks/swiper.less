@@ -1,44 +1,31 @@
 .swiper {
+
     &__button {
         position: absolute;
         top: 135px;
         right: 40px;
     }
 
-
-
+    &__vertical{
+    .swiper-pagination-bullet
+    {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+        border: 2px solid @White;
+        background-color: transparent;
     }
 
+    .swiper-pagination-bullet-active
+    {
+        background-color: @White;
 
-//  height: 100vh;
-//         width: 100%;
-//         overflow: hidden;
+    }
+    .swiper-vertical>.swiper-pagination-bullets,
+    .swiper-pagination-vertical.swiper-pagination-bullets
+    {
+    right: var(--swiper-pagination-right, 16%);
+    }
+    }
 
-//         .swiper-pagination-vertical {
-//             position: absolute;
-//             right: 44px;
-
-//             .swiper-pagination-bullet {
-//                 width: 12px;
-//                 height: 12px;
-//                 opacity: 1;
-//                 border: 2px solid @White;
-//                 background-color: transparent;
-//             }
-
-//             .swiper-pagination-bullet-active {
-//                 background-color: @White;
-//             }
-//         }
-
-//         .swiper-slide {
-//             width: 100%; /* Устанавливаем ширину каждого слайда на 100% ширины контейнера */
-//             height: 100%;
-//         }
-
-//         .swiper-slide img {
-//             display: block;
-//             width: 100%;
-//             height: 100%;
-//             object-fit: cover;
-//         }
+}

@@ -7,7 +7,7 @@
             }" :modules="modules" class="mySwiper">
                 <swiper-slide v-for="(slide, index) in slides" :key="index" :slidesPerView="3" :spaceBetween="20"
                     :centeredSlides="true" class="card relative">
-                    <div class="image card__background-middle"></div> <!-- Replace with image tag -->
+                    <div class="image image--middle"></div> <!-- Replace with image tag -->
                     <div class="card card__text box">
                         <div class="h4 purple box">{{ slide.title }}</div>
                         <div class="text">{{ slide.text }}</div>
