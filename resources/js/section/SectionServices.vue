@@ -10,7 +10,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-6 col-sm-4" v-for="(item, index) in items" :key="index">
-                    <div class="card center-sm">
+                    <div class="card card__image center-sm">
                         <slot name="image" :item="item">
                             <div class="image image--large">
                                 <img :src="item.image" alt="">
