@@ -3,7 +3,7 @@
         <div class="wrapper">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <div class="h3">
+                    <div class="h3 box">
                         <slot name="title"></slot>
                     </div>
                     <div class="text">

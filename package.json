@@ -11,6 +11,7 @@
         "@vitejs/plugin-vue": "^5.0.5",
         "autoprefixer": "^10.4.12",
         "axios": "^1.6.4",
+        "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^1.0",
         "less": "^4.2.0",
         "less-loader": "^12.2.0",
@@ -20,9 +21,12 @@
         "vue": "^3.4.27"
     },
     "dependencies": {
+        "@fawmi/vue-google-maps": "^0.9.79",
         "flexboxgrid": "^6.3.1",
         "normalize.css": "^8.0.1",
+        "svgmap": "^2.7.1",
         "swiper": "^11.1.4",
-        "vue-router": "^4.3.2"
+        "vue-router": "^4.3.2",
+        "vue3-google-map": "^0.20.0"
     }
 }

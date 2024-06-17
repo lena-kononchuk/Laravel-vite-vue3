@@ -11,11 +11,13 @@ export default defineConfig({
         vue(),
     ],
     optimizeDeps: {
-        include: ['vue', 'vue-router']
+        include: ['vue', 'vue-router', 'fast-deep-equal', '@fawmi/vue-google-maps']
     },
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js'
         }
-    }
+    },
+
+
 });

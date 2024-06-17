@@ -2,24 +2,26 @@
     <div class="section services section__yellow">
         <div class="wrapper">
             <div class="box3x center-sm">
-                <div class="h2">
+                <div class="h2 box">
                     <slot name="title"></slot>
                 </div>
-                <div class="text">
+                <div class="text box3x" style="max-width: 580px; margin: 0 auto;">
                     <slot name="text"></slot>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-6 col-sm-3" v-for="(item, index) in items" :key="index">
                     <div class="center-sm">
-                        <slot name="services-image" :item="item">
-                            <img :src="item.image" alt="">
-                        </slot>
+                        <div class="box">
+                            <slot name="services-image" :item="item">
+                                <img :src="item.image" class="circle" alt="">
+                            </slot>
+                        </div>
                         <slot name="services-title" :item="item">
-                            <h4>{{ item.title }}</h4>
+                            <div class="h4">{{ item.title }}</div>
                         </slot>
                         <slot name="services-text" :item="item">
-                            <p>{{ item.text }}</p>
+                            <div class="text">{{ item.text }}</div>
                         </slot>
                     </div>
                 </div>

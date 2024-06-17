@@ -3,7 +3,7 @@
         :style="{ backgroundImage: `url(${currentBackground})` }">
         <div class="wrapper">
             <swiper :modules="[Pagination]" :pagination="{ clickable: true, el: '.swiper-pagination' }"
-                direction="vertical" class="swiper swiper__vertical" @slideChange="onSlideChange"
+                direction="vertical" class="swiper swiper__vertical start-xs" @slideChange="onSlideChange"
                 style="height: 500px; overflow: hidden;">
                 <swiper-slide v-for="(slide, index) in slides" :key="index" class="slide">
                     <div class="flex">
