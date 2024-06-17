@@ -55,24 +55,50 @@
 
         <section-location> </section-location>
 
-        <section-text-image :img="'/img/services/services_family.jpg'" class="section__purple">
-            <template #title>Who We Are</template>
-            <template #text>
-                <div class="box">
-                    PAM Consulting is built upon a team of motivated professionals aiming to provide families
-                    and businesses the services they need to relocate to the island of Cyprus.
+        <section class="section section__purple">
+            <div class="wrapper">
+                <div class="row" style="justify-content: space-between;">
+                    <div class="col-xs-12 col-sm-6 white" style="max-width: 480px;">
+                        <div class="h2 box">Who We Are</div>
+                        <div class="text box">Have you ever dreamed about the perfect place to live? Your
+                            definition
+                            of
+                            PAM Consulting is built upon a team of motivated professionals aiming to provide
+                            families
+                            and businesses the services they need to relocate to the island of Cyprus.
+                        </div>
+                        <div class="text box3x">If you’ve made the decision to relocate to Cyprus, then you are
+                            expecting
+                            to
+                            find
+                            a safe place to settle. With extremely low crime rate, stunning sandy beaches, and
+                            awe-inspiring
+                            mountain views, Cyprus is the place to be!</div>
+                        <router-link to="/find-out-more" class="button button--yellow">More about us</router-link>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card card--grey flex" style="gap:40px">
+                            <div class="background"
+                                style="background-image: url('/img/team/founder.jpg'); width: 200px; height: 350px; border-radius:10px;">
+                            </div>
+                            <div>
+                                <div class="h4 box">FOUNDER</div>
+                                <div class="text box--small">Anastasia Papaharidemou</div>
+                                <router-link to="/find-out-more" class="button button--yellow">Contact</router-link>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="box2x">
-                    We understand the challenges of deciding to relocate and this is why we prioritize our clients’
-                    needs by
-                    making sure that the whole relocation process is as smooth and simple
-                    as possible.
-                </div>
-            </template>
-            <router-link class="button" to="#">
-                <span>More about us</span>
-            </router-link>
-        </section-text-image>
+            </div>
+        </section>
+
+        <section-services-items :items="newServicesItems">
+            <template #title> How we make it happen</template>
+        </section-services-items>
+
+        <section-logo></section-logo>
 
         <section-swiper-faq> </section-swiper-faq>
     </div>
@@ -84,6 +110,8 @@ import SectionHeroSwiper from '../section/SectionHeroSwiper.vue';
 import SectionServices from '../section/SectionServices.vue';
 import SectionLocation from '../section/SectionLocation.vue';
 import SectionImageText from '../section/SectionImageText.vue';
+import SectionLogo from '../section/SectionLogo.vue';
+
 
 
 import SectionTextImage from '../section/SectionTextImage.vue';
@@ -129,6 +157,29 @@ const servicesItems = [
         image: '/img/services/services_slide4.png',
         title: 'Family-oriented values',
         text: 'Excellent education standards and extremely low crime rates'
+    },
+]
+
+const newServicesItems = [
+    {
+        image: '/img/services/new-services1.png',
+        title: 'We listen',
+        text: 'Our most prominent purpose is to understand and identify with your needs so we can effectively find ways to provide solutions.'
+    },
+    {
+        image: '/img/services/new-services2.png',
+        title: 'We strategize',
+        text: 'According to your requirements, our team designs a thorough series of steps that will make the relocation process as smooth  as possible.'
+    },
+    {
+        image: '/img/services/new-services3.png',
+        title: 'We provide',
+        text: 'We implement our services that are based on efficient strategic planning that respond to your family’s and business’s goals and ambitions.'
+    },
+    {
+        image: '/img/services/new-services4.png',
+        title: 'We manage',
+        text: 'Once you are settled, we make sure that everything is according to your expectations and your vision of the quality of our services.'
     },
 ]
 </script>

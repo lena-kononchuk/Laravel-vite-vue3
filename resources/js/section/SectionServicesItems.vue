@@ -2,7 +2,7 @@
     <div class="section services section__yellow">
         <div class="wrapper">
             <div class="box3x center-sm">
-                <div class="h2 box">
+                <div class="h2 box uppercase">
                     <slot name="title"></slot>
                 </div>
                 <div class="text box3x" style="max-width: 580px; margin: 0 auto;">
