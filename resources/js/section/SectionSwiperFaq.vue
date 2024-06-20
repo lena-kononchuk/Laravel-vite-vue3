@@ -1,24 +1,22 @@
 <template>
     <div class="section section__purple" style="overflow: hidden;">
         <div class="wrapper">
-            <div class="box3x h2 center-sm white">Frequently Asked Questions</div>
+            <div class="box3x h2 center-sm white uppercase">Frequently Asked Questions</div>
             <swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
                 clickable: true, el: '.swiper-pagination-custom',
-            }" :modules="modules" class="mySwiper">
+            }" :modules="modules" class="mySwiper box2x swiper__horizontal">
                 <swiper-slide v-for="(slide, index) in slides" :key="index" :slidesPerView="3" :spaceBetween="20"
-                    :centeredSlides="true" class="card card__image relative">
-                    <div class="image image--middle">
-                        <img src="/public/img/slider_image.jpg" alt="">
-                    </div>
+                    :centeredSlides="true" class="card card__image relative flex-vertical"
+                    :style="{ minHeight: '500px' }">
+                    <div class="image image--middle" style="background-image: url('/img/slider_image.jpg');"></div>
                     <!-- Replace with image tag -->
-                    <div class="card card__text box">
+                    <div class="card card__text box" style="box-shadow:none">
                         <div class="h4 purple box">{{ slide.title }}</div>
                         <div class="text">{{ slide.text }}</div>
                         <button class="button button--purple swiper__button">{{ slide.button }}</button>
                     </div>
                 </swiper-slide>
             </swiper>
-
             <!-- Custom pagination element -->
             <div class="center-sm swiper-pagination-custom"></div>
         </div>
@@ -54,7 +52,6 @@ export default {
             { title: 'Question: What are the best cities in Cyprus for expats?', text: 'Answer: As Cyprus is among the most attractive destinations for people from different parts of the globe, large and thriving expat communities can be found in Paphos, Limassol, Larnaca, Nicosia.', button: 'Migration' },
 
         ]);
-
         return {
             slides,
             modules: [Pagination],

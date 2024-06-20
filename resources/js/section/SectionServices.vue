@@ -2,11 +2,12 @@
     <div class="section services section__purple">
         <div class="wrapper">
             <div class="box3x center-sm">
-                <div class="h2 white">
+                <div class="h2 white uppercase">
                     <slot name="title">
                         <div>{{ title }}</div>
                     </slot>
                 </div>
+                <div class="center-sm separator"></div>
             </div>
             <div class="row">
                 <div class="col-xs-6 col-sm-4" v-for="(item, index) in items" :key="index">

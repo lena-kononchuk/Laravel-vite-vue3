@@ -1,31 +1,60 @@
 .swiper {
+    cursor: pointer;
 
     &__button {
         position: absolute;
         top: 135px;
         right: 40px;
     }
-
-    &__vertical{
+    &__vertical
+    {
+    //swiper vertical
     .swiper-pagination-bullet
     {
-        width: 10px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
         opacity: 1;
         border: 2px solid @White;
         background-color: transparent;
+        &-active
+        {
+            background-color: @White;
+            width: 20px;
+            height: 20px;
+        }
     }
 
-    .swiper-pagination-bullet-active
-    {
-        background-color: @White;
-
-    }
     .swiper-vertical>.swiper-pagination-bullets,
     .swiper-pagination-vertical.swiper-pagination-bullets
     {
-    right: var(--swiper-pagination-right, 16%);
+        right: var(--swiper-pagination-right, 16%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     }
 
+
 }
+    //swiper horizontal
+
+    .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+        width: 12px;
+        height: 12px;
+        opacity: 1;
+        border: 2px solid @White;
+        background-color: transparent;
+
+        &-active{
+        background-color: @White;
+        width: 20px;
+        height: 20px;
+        }
+    }
+    .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+

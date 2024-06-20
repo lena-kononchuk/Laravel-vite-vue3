@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 relative">
                     <div class="center-sm middle-sm" style="padding: 0 50px;">
-                        <div class="h2 box">Moving to Paradise</div>
-                        <div class="text">Have you ever dreamed about the perfect place to live? Your definition of
+                        <div class="h2 box uppercase">Moving to Paradise</div>
+                        <div class="text box">Have you ever dreamed about the perfect place to live? Your definition of
                             perfect
                             may be different someone else’s. Are you longing to live by the beach and listen to the
                             soothing
@@ -59,7 +59,7 @@
             <div class="wrapper">
                 <div class="row" style="justify-content: space-between;">
                     <div class="col-xs-12 col-sm-6 white" style="max-width: 480px;">
-                        <div class="h2 box">Who We Are</div>
+                        <div class="h2 box uppercase">Who We Are</div>
                         <div class="text box">Have you ever dreamed about the perfect place to live? Your
                             definition
                             of
@@ -82,7 +82,7 @@
                                 style="background-image: url('/img/team/founder.jpg'); width: 200px; height: 350px; border-radius:10px;">
                             </div>
                             <div>
-                                <div class="h4 box">FOUNDER</div>
+                                <div class="h4 box purple">FOUNDER</div>
                                 <div class="text box--small">Anastasia Papaharidemou</div>
                                 <router-link to="/find-out-more" class="button button--yellow">Contact</router-link>
 
@@ -101,6 +101,8 @@
         <section-logo></section-logo>
 
         <section-swiper-faq> </section-swiper-faq>
+        <section-footer> </section-footer>
+
     </div>
 </template>
 
@@ -111,12 +113,11 @@ import SectionServices from '../section/SectionServices.vue';
 import SectionLocation from '../section/SectionLocation.vue';
 import SectionImageText from '../section/SectionImageText.vue';
 import SectionLogo from '../section/SectionLogo.vue';
-
-
-
 import SectionTextImage from '../section/SectionTextImage.vue';
 import SectionServicesItems from '../section/SectionServicesItems.vue';
 import SectionSwiperFaq from '../section/SectionSwiperFaq.vue';
+import SectionFooter from '../section/SectionFooter.vue';
+
 
 
 const services = [

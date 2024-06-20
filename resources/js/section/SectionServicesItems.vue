@@ -18,10 +18,10 @@
                             </slot>
                         </div>
                         <slot name="services-title" :item="item">
-                            <div class="h4">{{ item.title }}</div>
+                            <div class="h4 purple box--small">{{ item.title }}</div>
                         </slot>
                         <slot name="services-text" :item="item">
-                            <div class="text">{{ item.text }}</div>
+                            <div class="text ">{{ item.text }}</div>
                         </slot>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
         <div class="wrapper">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <div class="h3 box">
+                    <div class="h3 uppercase box2x">
                         <slot name="title"></slot>
                     </div>
                     <div class="text">
@@ -11,7 +11,8 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <div class="images" ref="sectionImage" :style="{ backgroundImage: 'url(' + img + ')' }"></div>
+                    <div class="image image--large" ref="sectionImage" :style="{ backgroundImage: 'url(' + img + ')' }"
+                        style="border-radius:0;"></div>
                 </div>
             </div>
         </div>

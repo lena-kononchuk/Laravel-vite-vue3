@@ -1,12 +1,21 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import { createApp } from 'vue';
 import HomePage from './pages/HomePage.vue';
-import VueGoogleMaps from '@fawmi/vue-google-maps';
+import ServicesPage from './pages/ServicesPage.vue';
+import SectionFooter from './section/SectionFooter.vue';
+import SectionHeader from './section/SectionHeader.vue';
+import AboutPage from './pages/AboutPage.vue';
+
+
+
 
 console.log("JavaScript файл исполняется...");
 
 const routes = [
     { path: '/', component: HomePage },
+    { path: '/services', component: ServicesPage },
+    { path: '/about', component: AboutPage },
+
 ];
 
 const router = createRouter({
@@ -18,13 +27,10 @@ console.log("Vue Router работает корректно...");
 
 const app = createApp({});
 
-app.use(router);
-app.use(VueGoogleMaps, {
-    load: {
-        key: 'AIzaSyCY92VDM03aLG9Z3riE8IsV4wF0gemzv_M',
-    },
-});
+app.component('section-footer', SectionFooter);
+app.component('section-header', SectionHeader);
 
+app.use(router);
 app.mount('#app');
 
 

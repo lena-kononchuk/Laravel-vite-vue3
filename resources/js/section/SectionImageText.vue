@@ -6,7 +6,7 @@
                     <div class="images" ref="sectionImage" :style="{ backgroundImage: 'url(' + img + ')' }"></div>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <div class="h3">
+                    <div class="h3 uppercase box2x">
                         <slot name="title"></slot>
                     </div>
                     <div class="text">
