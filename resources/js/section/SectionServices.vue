@@ -1,46 +1,37 @@
 <template>
-    <div class="section services section__purple">
-        <div class="wrapper">
-            <div class="box3x center-sm">
-                <div class="h2 white uppercase">
-                    <slot name="title">
-                        <div>{{ title }}</div>
-                    </slot>
-                </div>
-                <div class="center-sm separator"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-4" v-for="(item, index) in items" :key="index">
-                    <div class="card card__image center-sm">
-                        <slot name="image" :item="item">
-                            <div class="image image--large">
-                                <img :src="item.image" alt="">
-                            </div>
-                        </slot>
-                        <div class="card card__text box">
-                            <slot name="subtitle" :item="item">
-                                <div class="h3 box">{{ item.subtitle }}</div>
-                            </slot>
-                            <slot name="text" :item="item">
-                                <div class="text box">{{ item.text }}</div>
-                            </slot>
-                            <div>
-                                <slot name="button"></slot>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section-services-items :items="servicesItems">
+        <template #title> How We Can Help</template>
+    </section-services-items>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import SectionServicesItems from '../section/SectionServicesItems.vue';
+const servicesItems = [
+    {
+        image: '/img/services-page/services-image1.png',
+        title: 'Pre-arrival Planning',
+        text: 'We provide a step-by-step plan that will handle every aspect of your family’s relocation process.'
+    },
+    {
+        image: '/img/services-page/services-image2.png',
+        title: 'Housing and Location Options',
+        text: 'Together, we will discuss and review housing options according to your needs and expectations.'
+    },
+    {
+        image: '/img/services-page/services-image3.png',
+        title: 'Immigration Assistance ',
+        text: 'Our consultation services will simplify immigration matters, helping you arrange the documents you need.'
+    },
+    {
+        image: '/img/services-page/services-image4.png',
+        title: 'Education Options ',
+        text: 'We will provide you with every schooling option available for your children and assist you in making your decision.'
+    },
+    {
+        image: '/img/services-page/services-image5.png',
+        title: 'Personalized Support',
+        text: 'Our services include providing you with any information you may need about living in Cyprus with your family.'
+    },
+]
 
-const props = defineProps({
-    title: String,
-    items: Array,
-    img: String,
-});
 </script>

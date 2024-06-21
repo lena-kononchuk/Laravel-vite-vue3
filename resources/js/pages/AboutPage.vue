@@ -44,6 +44,8 @@
     <section-services-items :items="servicesItems">
         <template #title> Why We Do It – Our Values</template>
     </section-services-items>
+    <contact-form></contact-form>
+
 </template>
 
 <script setup>
@@ -51,6 +53,7 @@ import { ref } from 'vue';
 import SectionHero from '../section/SectionHero.vue';
 import SectionTextImage from '../section/SectionTextImage.vue';
 import SectionServicesItems from '../section/SectionServicesItems.vue';
+import ContactForm from '../components/ContactForm.vue';
 
 
 const servicesItems = [
@@ -75,7 +78,4 @@ const servicesItems = [
         text: 'Our services include providing you with any information you may need about living in Cyprus with your family.'
     },
 ]
-
-
-
 </script>

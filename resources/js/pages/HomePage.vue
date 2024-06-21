@@ -98,6 +98,7 @@
             <template #title> How we make it happen</template>
         </section-services-items>
 
+        <contact-form></contact-form>
         <section-logo></section-logo>
 
         <section-swiper-faq> </section-swiper-faq>
@@ -113,6 +114,8 @@ import SectionServices from '../section/SectionServices.vue';
 import SectionLocation from '../section/SectionLocation.vue';
 import SectionImageText from '../section/SectionImageText.vue';
 import SectionLogo from '../section/SectionLogo.vue';
+import ContactForm from '../components/ContactForm.vue';
+
 import SectionTextImage from '../section/SectionTextImage.vue';
 import SectionServicesItems from '../section/SectionServicesItems.vue';
 import SectionSwiperFaq from '../section/SectionSwiperFaq.vue';
