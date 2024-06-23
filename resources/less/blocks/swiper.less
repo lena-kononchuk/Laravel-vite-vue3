@@ -1,6 +1,7 @@
 .swiper {
     cursor: pointer;
 
+
     &__button {
         position: absolute;
         top: 135px;
@@ -8,6 +9,16 @@
     }
     &__vertical
     {
+    .swiper-pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
     //swiper vertical
     .swiper-pagination-bullet
     {
@@ -28,9 +39,11 @@
     .swiper-pagination-vertical.swiper-pagination-bullets
     {
         right: var(--swiper-pagination-right, 16%);
+        top: 40%;
         display: flex;
         flex-direction: column;
         align-items: center;
+
     }
     }
 

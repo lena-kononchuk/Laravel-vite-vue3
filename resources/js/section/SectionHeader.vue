@@ -28,7 +28,7 @@
                     </ul>
                 </nav>
                 <div class="end-sm">
-                    <button class="button button--yellow">Get in touch</button>
+                    <router-link to="/contact" class="button button--yellow">Get in touch</router-link>
                 </div>
             </div>
         </div>

@@ -4,10 +4,8 @@
 
         <section-services :items="services">
             <template #title> Our Services</template>
-            <template #button>
-                <router-link class="button button--primary" to="#">
-                    <span>Find Out More</span>
-                </router-link>
+            <template #button="{ item }">
+                <router-link :to="item.buttonLink" class="button button--primary">Find Out More</router-link>
             </template>
         </section-services>
         <section class="section">
@@ -34,7 +32,7 @@
                             a safe place to settle. With extremely low crime rate, stunning sandy beaches, and
                             awe-inspiring
                             mountain views, Cyprus is the place to be!</div>
-                        <router-link to="/find-out-more" class="button button--primary">Find Out More</router-link>
+                        <router-link to="/immigration" class="button button--primary">Find Out More</router-link>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 overflow">
@@ -74,7 +72,7 @@
                             a safe place to settle. With extremely low crime rate, stunning sandy beaches, and
                             awe-inspiring
                             mountain views, Cyprus is the place to be!</div>
-                        <router-link to="/find-out-more" class="button button--yellow">More about us</router-link>
+                        <router-link to="/about" class="button button--yellow">More about us</router-link>
                     </div>
                     <div class="col-xs-12 col-sm-6">
                         <div class="card card--grey flex" style="gap:40px">
@@ -84,7 +82,7 @@
                             <div>
                                 <div class="h4 box purple">FOUNDER</div>
                                 <div class="text box--small">Anastasia Papaharidemou</div>
-                                <router-link to="/find-out-more" class="button button--yellow">Contact</router-link>
+                                <router-link to="/contact" class="button button--yellow">Contact</router-link>
 
                             </div>
                         </div>
@@ -125,17 +123,22 @@ const services = [
     {
         image: '/img/services/services_family.jpg',
         subtitle: 'Family Relocation',
-        text: 'With strategic planning, we simplify the moving process so you and your family can feel safe and confident.'
+        text: 'With strategic planning, we simplify the moving process so you and your family can feel safe and confident.',
+        buttonLink: '/services-family',
     },
     {
         image: '/img/services/services_business.jpg',
         subtitle: 'Business Relocation',
-        text: 'We handle the responsibility of moving your business to Cyprus, so you can focus on your business goals.'
+        text: 'We handle the responsibility of moving your business to Cyprus, so you can focus on your business goals.',
+        buttonLink: '/services-business',
+
     },
     {
         image: '/img/services/services_investment.jpg',
         subtitle: 'Investment plans',
-        text: 'Discover the opportunity to further enhance your business ambitions, by choosing the optimal investment plan.'
+        text: 'Discover the opportunity to further enhance your business ambitions, by choosing the optimal investment plan.',
+        buttonLink: '/services-investments',
+
     },
 ];
 

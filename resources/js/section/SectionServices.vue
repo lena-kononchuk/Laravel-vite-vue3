@@ -13,20 +13,25 @@
             <div class="row">
                 <div class="col-xs-6 col-sm-4" v-for="(item, index) in items" :key="index">
                     <div class="card center-sm">
-                        <slot name="image" :item="item">
-                            <div class="image image--large" style="background: white;">
+                        <div class="image image--large" style="background: white;">
+                            <slot name="image" :item="item">
                                 <img :src="item.image" alt="">
-                            </div>
-                        </slot>
+                            </slot>
+                        </div>
                         <div class="card card__text box">
-                            <slot name="subtitle" :item="item">
-                                <div class="h3 box">{{ item.subtitle }}</div>
-                            </slot>
-                            <slot name="text" :item="item">
-                                <div class="text box">{{ item.text }}</div>
-                            </slot>
+                            <div class="h3 box">
+                                <slot name="subtitle" :item="item">
+                                    {{ item.subtitle }}
+                                </slot>
+                            </div>
+                            <div class="text box">
+                                <slot name="text" :item="item">
+                                    {{ item.text }}
+                                </slot>
+                            </div>
                             <div>
-                                <slot name="button"></slot>
+                                <router-link :to="item.buttonLink" class="button button--primary">Find Out
+                                    More</router-link>
                             </div>
                         </div>
                     </div>
@@ -42,6 +47,5 @@ import { defineProps } from 'vue';
 const props = defineProps({
     title: String,
     items: Array,
-    img: String,
 });
 </script>

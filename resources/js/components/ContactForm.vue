@@ -16,35 +16,41 @@
                 <form @submit.prevent="submitForm" style="max-width: 580px; margin: 0 auto;">
                     <div class="row">
                         <div class="box col-xs-12 col-sm-6">
-                            <input type="text" class="input" placeholder="Your Name" v-model="form.name" required />
-                            <span v-if="errors.name" class="error">{{ errors.name }}</span>
+                            <input type="text" class="input" placeholder="Your Name" v-model="form.name"
+                                :class="{ 'is-invalid': errors.name }" required />
+                            <span v-if="errors.name" class="text-danger">{{ errors.name }}</span>
                         </div>
                         <div class="box col-xs-12 col-sm-6">
-                            <input type="email" class="input" placeholder="Email" v-model="form.email" required />
-                            <span v-if="errors.email" class="error">{{ errors.email }}</span>
+                            <input type="email" class="input" placeholder="Email" v-model="form.email"
+                                :class="{ 'is-invalid': errors.email }" required />
+                            <span v-if="errors.email" class="text-danger">{{ errors.email }}</span>
                         </div>
                         <div class="box col-xs-12 col-sm-6">
-                            <input type="text" class="input" placeholder="Subject" v-model="form.subject" required />
-                            <span v-if="errors.subject" class="error">{{ errors.subject }}</span>
+                            <input type="text" class="input" placeholder="Subject" v-model="form.subject"
+                                :class="{ 'is-invalid': errors.subject }" required />
+                            <span v-if="errors.subject" class="text-danger">{{ errors.subject }}</span>
                         </div>
                         <div class="box col-xs-12 col-sm-6">
-                            <input type="tel" class="input" placeholder="Phone" v-model="form.phone" />
-                            <span v-if="errors.phone" class="error">{{ errors.phone }}</span>
+                            <input type="tel" class="input" placeholder="Phone" v-model="form.phone"
+                                :class="{ 'is-invalid': errors.phone }" />
+                            <span v-if="errors.phone" class="text-danger">{{ errors.phone }}</span>
                         </div>
                     </div>
                     <textarea placeholder="Your message" class="input input--textarea box" v-model="form.message"
-                        required></textarea>
-                    <span v-if="errors.message" class="error">{{ errors.message }}</span>
+                        :class="{ 'is-invalid': errors.message }" required></textarea>
+                    <span v-if="errors.message" class="text-danger">{{ errors.message }}</span>
                     <div class="box relative">
                         <label class="checkbox">
-                            <input class="checkbox__input" type="checkbox" v-model="form.terms" required />
+                            <input class="checkbox__input" type="checkbox" v-model="form.terms"
+                                :class="{ 'is-invalid': errors.terms }" required />
                             <span class="checkbox__checkmark start-xs"></span>
                             By clicking “Submit button” you accept our <span class="purple">Terms & Conditions</span>
                             and have read our
-                            <router-link to="/disclaimer" class="link purple">Disclaimer</router-link> and
+                            <router-link to="/disclaimer" class="link purple"> Disclaimer </router-link>
+                            and
                             <router-link to="/privacy-policy" class="link purple">Privacy Policy</router-link>
                         </label>
-                        <span v-if="errors.terms" class="error">{{ errors.terms }}</span>
+                        <span v-if="errors.terms" class="text-danger">{{ errors.terms }}</span>
                     </div>
                     <button type="submit" class="button button--yellow">Submit</button>
                 </form>
@@ -69,50 +75,61 @@ export default {
         };
     },
     methods: {
-        validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(String(email).toLowerCase());
-        },
-        validateForm() {
-            this.errors = {};
-
-            if (!this.form.name) {
-                this.errors.name = 'Name is required.';
-            }
-            if (!this.form.email) {
-                this.errors.email = 'Email is required.';
-            } else if (!this.validateEmail(this.form.email)) {
-                this.errors.email = 'Invalid email format.';
-            }
-            if (!this.form.subject) {
-                this.errors.subject = 'Subject is required.';
-            }
-            if (!this.form.message) {
-                this.errors.message = 'Message is required.';
-            }
-            if (!this.form.terms) {
-                this.errors.terms = 'You must accept the terms and conditions.';
-            }
-
-            return Object.keys(this.errors).length === 0;
-        },
         submitForm() {
-            if (this.validateForm()) {
+            this.errors = this.validateForm();
+            if (Object.keys(this.errors).length === 0) {
                 // Handle form submission
                 console.log(this.form);
-                alert('Form submitted successfully!');
-            } else {
-                alert('Please correct the errors.');
+                // Reset form after submission
+                this.resetForm();
             }
+        },
+        validateForm() {
+            const errors = {};
+            if (!this.form.name) {
+                errors.name = 'Name is required.';
+            }
+            if (!this.form.email) {
+                errors.email = 'Email is required.';
+            } else if (!this.validEmail(this.form.email)) {
+                errors.email = 'Email must be valid.';
+            }
+            if (!this.form.subject) {
+                errors.subject = 'Subject is required.';
+            }
+            if (!this.form.message) {
+                errors.message = 'Message is required.';
+            }
+            if (!this.form.terms) {
+                errors.terms = 'You must accept the terms and conditions.';
+            }
+            return errors;
+        },
+        validEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+            return re.test(email);
+        },
+        resetForm() {
+            this.form.name = '';
+            this.form.email = '';
+            this.form.subject = '';
+            this.form.phone = '';
+            this.form.message = '';
+            this.form.terms = false;
         }
     }
 };
 </script>
 
 <style scoped>
-.error {
+.is-invalid {
+    border-color: red;
+}
+
+.text-danger {
     color: red;
     font-size: 12px;
     margin-top: 5px;
+    display: block;
 }
 </style>
