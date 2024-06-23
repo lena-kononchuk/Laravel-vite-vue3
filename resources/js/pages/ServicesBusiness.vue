@@ -1,5 +1,5 @@
 <template>
-    <section-hero bg="/img/hero/business.jpg">
+    <section-hero bg="/img/hero/business.jpg" style="height: 500;">
         <template #title>Business Relocation</template>
     </section-hero>
     <section-image-text img="/img/services-page/bussines-friendly.jpg">
@@ -129,11 +129,6 @@ const servicesItems = [
         image: '/img/services-page/business_slide4.png',
         title: 'Facilitation of Newcomers',
         text: 'We provide support and exceptional services to every newcomer of your business.'
-    },
-    {
-        image: '/img/services-page/business_slide5.png',
-        title: 'Ongoing Support',
-        text: 'We remain at your disposal should you need any further assistance and guidance.'
     },
 ]
 

@@ -4,7 +4,7 @@
         <div class="wrapper">
             <swiper :modules="[Pagination]" :pagination="{ clickable: true, el: '.swiper-pagination' }"
                 direction="vertical" class="swiper swiper__vertical start-xs" @slideChange="onSlideChange"
-                style="height: 500px; overflow: hidden;">
+                style="height: 600px; overflow: hidden;">
                 <swiper-slide v-for="(slide, index) in slides" :key="index" class="slide">
                     <div class="flex">
                         <a href="/investments" class="box button button--purple-light">Investments</a>
@@ -23,8 +23,13 @@
                     <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
                         class="box">{{ slide.subtitle }}</div>
 
-                    <div class="images flex">
-                        <img v-for="(image, imgIndex) in slide.images" :key="imgIndex" :src="image" alt="card" />
+                    <div v-if="index === 0" class="flex">
+                        <div v-for="(image, imgIndex) in slide.images" :key="imgIndex" class="card"
+                            style="padding: 10px;">
+                            <img :src="image" :alt="`Image of ${slide.cityNames[imgIndex]}`"
+                                class="image image--small box--small" />
+                            <div class="text">{{ slide.cityNames[imgIndex] }}</div>
+                        </div>
                     </div>
                 </swiper-slide>
             </swiper>
@@ -55,7 +60,8 @@ export default {
                 buttonLink: '',
                 buttonText: 'Find Out More',
                 subtitle: 'Most popular cities',
-                // images: ['/img/picture_home2.jpg', '/img/picture_home3.jpg']
+                images: ['/img/hero/cities_slider1.png', '/img/hero/cities_slider2.png', '/img/hero/cities_slider3.png', '/img/hero/cities_slider4.png'],
+                cityNames: ['Nicosia', 'Limassol', 'Larnaca', 'Paphos']
             },
             {
                 background: '/img/hero/hero-invest.jpg',

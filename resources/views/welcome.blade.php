@@ -15,10 +15,14 @@
     @vite(['resources/less/app.less', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
+<div id="app" class="app">
         <section-header></section-header>
-        <router-view></router-view>
-        <section-footer></section-footer>
+        <main>
+            <router-view></router-view>
+        </main>
+        <footer>
+            <section-footer></section-footer>
+        </footer>
     </div>
 </body>
 </html>

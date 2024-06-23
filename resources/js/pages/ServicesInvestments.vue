@@ -1,8 +1,8 @@
 <template>
-    <section-hero bg="/img/hero/business.jpg">
+    <section-hero bg="/img/hero/investments.jpg">
         <template #title>Investment Opportunities</template>
     </section-hero>
-    <section-image-text img="/img/services-page/bussines-friendly.jpg">
+    <section-image-text img="/img/services-page/real-estate.jpg">
         <template #title>Investing in Real Estate
         </template>
         <template #text>
@@ -32,7 +32,7 @@
             </div>
         </template>
     </section-image-text>
-    <section-text-image img="/img/services-page/qality.jpg">
+    <section-text-image img="/img/services-page/yachts.jpg">
         <template #title>Investing in Yachts</template>
         <template #text>
             <div class="box">
@@ -71,7 +71,7 @@
             </div>
         </template>
     </section-text-image>
-    <section-image-text img="/img/services-page/economic.jpg">
+    <section-image-text img="/img/services-page/starting.jpg">
         <template #title>Starting a Business</template>
         <template #text>
             <div class="box">
@@ -143,11 +143,6 @@ const servicesItems = [
         image: '/img/services-page/investments_slide4.png',
         title: 'We provide',
         text: 'We offer you our services based on trustworthy agreements with renowned partners in Cyprus.'
-    },
-    {
-        image: '/img/services-page/investments_slide5.png',
-        title: 'We support',
-        text: 'Once you decide on your investment plan, we remain by your side to make sure everything meets your expectations.'
     },
 ]
 

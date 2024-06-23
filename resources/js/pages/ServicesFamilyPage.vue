@@ -132,11 +132,6 @@ const servicesItems = [
         title: 'Education Options ',
         text: 'We will provide you with every schooling option available for your children and assist you in making your decision.'
     },
-    {
-        image: '/img/services-page/services-image5.png',
-        title: 'Personalized Support',
-        text: 'Our services include providing you with any information you may need about living in Cyprus with your family.'
-    },
 ]
 
 

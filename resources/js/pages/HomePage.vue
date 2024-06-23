@@ -102,8 +102,6 @@
         <section-logo></section-logo>
 
         <section-swiper-faq> </section-swiper-faq>
-        <section-footer> </section-footer>
-
     </div>
 </template>
 

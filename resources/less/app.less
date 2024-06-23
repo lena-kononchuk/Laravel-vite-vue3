@@ -22,7 +22,16 @@ html
     background-color: @White;
     min-width: 320px;
     overflow-x: hidden;
+    height: 100%;
 
+}
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+main {
+    flex: 1;
 }
 
 body
@@ -88,7 +97,24 @@ body
     .image('logo.svg');
 
 }
+.footer
+{
+    flex-shrink: 0;
+}
+.nav__links .active ul {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: @Purple;
 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px;
+    margin-top: 7px;
+    min-width: 200px;
+    list-style: none;
+}
 
 @import "blocks/section";
 @import "blocks/wrapper";
@@ -97,6 +123,7 @@ body
 @import "blocks/swiper";
 @import "blocks/image";
 @import "blocks/hero";
+@import "blocks/input";
 
 
 
