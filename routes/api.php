@@ -8,3 +8,4 @@ use App\Http\Controllers\DataController;
 
 
 Route::post('/enquiry', [App\Http\Controllers\EnquiryController::class, 'store'])->name('enquiry');
+Route::get('/faqs', [App\Http\Controllers\FaqController::class, 'index']);
