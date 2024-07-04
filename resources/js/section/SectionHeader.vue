@@ -24,11 +24,11 @@
                             </ul>
                         </li>
                         <li><router-link class="link" to="/immigration">MIGRATION</router-link></li>
-                        <li><router-link class="link" to="/contact">CONTACT US</router-link></li>
+                        <li><router-link class="link" to="/enquiry">CONTACT US</router-link></li>
                     </ul>
                 </nav>
                 <div class="end-sm">
-                    <router-link to="/contact" class="button button--yellow">Get in touch</router-link>
+                    <router-link to="/enquiry" class="button button--yellow">Get in touch</router-link>
                 </div>
             </div>
         </div>

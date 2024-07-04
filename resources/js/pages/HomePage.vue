@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section-hero-swiper></section-hero-swiper>
+        <section-hero-swiper class="scroller"></section-hero-swiper>
 
         <section-services :items="services">
             <template #title> Our Services</template>
@@ -82,7 +82,7 @@
                             <div>
                                 <div class="h4 box purple">FOUNDER</div>
                                 <div class="text box--small">Anastasia Papaharidemou</div>
-                                <router-link to="/contact" class="button button--yellow">Contact</router-link>
+                                <router-link to="/enquiry" class="button button--yellow">Contact</router-link>
 
                             </div>
                         </div>

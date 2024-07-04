@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\EnquiryController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
 
-Route::get('/api/google-maps-api-key', function () {
-    return response()->json([
-        'apiKey' => config('googlemaps.api_key'),
-    ]);
-});
+
+
+Route::post('/enquiry', [App\Http\Controllers\EnquiryController::class, 'store'])->name('enquiry');

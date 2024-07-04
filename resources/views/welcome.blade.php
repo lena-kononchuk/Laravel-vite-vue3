@@ -15,9 +15,11 @@
     @vite(['resources/less/app.less', 'resources/js/app.js'])
 </head>
 <body>
+
+
 <div id="app" class="app">
         <section-header></section-header>
-        <main>
+        <main class="fullscreen" v-smooth-scroll="{ duration: 30000, offset: 200 }">
             <router-view></router-view>
         </main>
         <footer>

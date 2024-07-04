@@ -9,7 +9,7 @@
                 <li><router-link to="/services">SERVICES</router-link></li>
                 <li><router-link to="/invest">INVEST IN CYPRUS</router-link></li>
                 <li><router-link to="/migration">MIGRATION</router-link></li>
-                <li><router-link to="/contact">CONTACT US</router-link></li>
+                <li><router-link to="/enquiry">CONTACT US</router-link></li>
             </ul>
             <button class="contact-button">Get in touch</button>
         </div>

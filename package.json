@@ -10,7 +10,7 @@
         "@tailwindcss/forms": "^0.5.3",
         "@vitejs/plugin-vue": "^5.0.5",
         "autoprefixer": "^10.4.12",
-        "axios": "^1.6.4",
+        "axios": "^0.19.2",
         "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^1.0",
         "less": "^4.2.0",
@@ -22,11 +22,18 @@
     },
     "dependencies": {
         "@fawmi/vue-google-maps": "^0.9.79",
+        "@vee-validate/i18n": "^4.13.1",
+        "@vee-validate/rules": "^4.13.1",
         "flexboxgrid": "^6.3.1",
+        "gsap": "^3.12.5",
         "normalize.css": "^8.0.1",
+        "smooth-scrollbar": "^8.8.4",
         "svgmap": "^2.7.1",
         "swiper": "^11.1.4",
+        "vee-validate": "^4.13.1",
         "vue-router": "^4.3.2",
-        "vue3-google-map": "^0.20.0"
+        "vue3-google-map": "^0.20.0",
+        "vue3-smooth-scroll": "^0.8.1",
+        "vuex": "^4.1.0"
     }
 }

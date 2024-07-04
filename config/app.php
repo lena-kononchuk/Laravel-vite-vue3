@@ -1,126 +1,176 @@
 <?php
 
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\ServiceProvider;
+
 return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Name
+    | Название приложения
     |--------------------------------------------------------------------------
     |
-    | This value is the name of your application, which will be used when the
-    | framework needs to place the application's name in a notification or
-    | other UI elements where an application name needs to be displayed.
+    | Это значение является именем вашего приложения. Оно используется, когда
+    | фреймворк должен разместить имя приложения в уведомлении или
+    | в любом другом месте, как требуется вашим приложением или его пакетами.
     |
     */
-
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
-    | Application Environment
+    | Окружение приложения
     |--------------------------------------------------------------------------
     |
-    | This value determines the "environment" your application is currently
-    | running in. This may determine how you prefer to configure various
-    | services the application utilizes. Set this in your ".env" file.
+    | Это значение определяет "окружение", в котором в данный момент
+    | работает ваше приложение. Это может определять, как вы предпочитаете
+    | настраивать различные службы, используемые приложением. Установите это в вашем файле ".env".
     |
     */
-
     'env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
-    | Application Debug Mode
+    | Режим отладки приложения
     |--------------------------------------------------------------------------
     |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
+    | Когда ваше приложение находится в режиме отладки, подробные сообщения об ошибках
+    | с трассировкой стека будут отображаться при каждой ошибке,
+    | возникающей в вашем приложении. Если отключено, будет показана простая общая страница ошибки.
     |
     */
-
     'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
-    | Application URL
+    | URL приложения
     |--------------------------------------------------------------------------
     |
-    | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | the application so that it's available within Artisan commands.
+    | Этот URL используется консолью для правильной генерации URL-адресов при использовании
+    | командной строки Artisan. Вы должны установить это в корень
+    | вашего приложения, чтобы оно использовалось при выполнении задач Artisan.
     |
     */
-
     'url' => env('APP_URL', 'http://localhost'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Timezone
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default timezone for your application, which
-    | will be used by the PHP date and date-time functions. The timezone
-    | is set to "UTC" by default as it is suitable for most use cases.
-    |
-    */
-
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'asset_url' => env('ASSET_URL'),
 
     /*
     |--------------------------------------------------------------------------
-    | Application Locale Configuration
+    | Часовой пояс приложения
     |--------------------------------------------------------------------------
     |
-    | The application locale determines the default locale that will be used
-    | by Laravel's translation / localization methods. This option can be
-    | set to any locale for which you plan to have translation strings.
+    | Здесь вы можете указать часовой пояс по умолчанию для вашего приложения, который
+    | будет использоваться PHP функциями даты и времени. Мы установили для вас
+    | разумное значение по умолчанию.
     |
     */
-
-    'locale' => env('APP_LOCALE', 'en'),
-
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
-
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
-    | Encryption Key
+    | Настройки локали приложения
     |--------------------------------------------------------------------------
     |
-    | This key is utilized by Laravel's encryption services and should be set
-    | to a random, 32 character string to ensure that all encrypted values
-    | are secure. You should do this prior to deploying the application.
+    | Локаль приложения определяет языковую локаль по умолчанию, которая будет использоваться
+    | сервис-провайдером перевода. Вы можете установить это значение
+    | на любую из поддерживаемых приложением локалей.
     |
     */
+    'locale' => 'en',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Резервная локаль приложения
+    |--------------------------------------------------------------------------
+    |
+    | Резервная локаль определяет локаль, которая будет использоваться, если текущая
+    | недоступна. Вы можете изменить значение на любую из папок с языками,
+    | предоставляемых вашим приложением.
+    |
+    */
+    'fallback_locale' => 'en',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Локаль Faker
+    |--------------------------------------------------------------------------
+    |
+    | Эта локаль будет использоваться библиотекой Faker PHP при генерации фейковых
+    | данных для ваших сеялок базы данных. Например, это будет использоваться для получения
+    | локализованных номеров телефонов, адресов и другой информации.
+    |
+    */
+    'faker_locale' => 'en_US',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ключ шифрования
+    |--------------------------------------------------------------------------
+    |
+    | Этот ключ используется сервисом шифрования Illuminate и должен быть установлен
+    | на случайную строку из 32 символов, иначе зашифрованные строки
+    | не будут безопасными. Сделайте это перед развертыванием приложения!
+    |
+    */
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
-    'key' => env('APP_KEY'),
-
-    'previous_keys' => [
-        ...array_filter(
-            explode(',', env('APP_PREVIOUS_KEYS', ''))
-        ),
+    /*
+    |--------------------------------------------------------------------------
+    | Драйвер режима обслуживания
+    |--------------------------------------------------------------------------
+    |
+    | Эти настройки определяют драйвер, используемый для определения и
+    | управления состоянием "режим обслуживания" Laravel. Драйвер "cache"
+    | позволит управлять режимом обслуживания на нескольких машинах.
+    |
+    | Поддерживаемые драйверы: "file", "cache"
+    |
+    */
+    'maintenance' => [
+        'driver' => 'file',
+        // 'store' => 'redis',
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
+    | Автозагружаемые сервис-провайдеры
     |--------------------------------------------------------------------------
     |
-    | These configuration options determine the driver used to determine and
-    | manage Laravel's "maintenance mode" status. The "cache" driver will
-    | allow maintenance mode to be controlled across multiple machines.
-    |
-    | Supported drivers: "file", "cache"
+    | Здесь перечисленные сервис-провайдеры будут автоматически загружены при
+    | запросе к вашему приложению. Не стесняйтесь добавлять свои собственные сервисы
+    | в этот массив для предоставления расширенных функций вашим приложениям.
     |
     */
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        /*
+         * Пакетные сервис-провайдеры...
+         */
 
-    'maintenance' => [
-        'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
-        'store' => env('APP_MAINTENANCE_STORE', 'database'),
-    ],
+        /*
+         * Приложение Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+    ])->toArray(),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Псевдонимы классов
+    |--------------------------------------------------------------------------
+    |
+    | Этот массив псевдонимов классов будет зарегистрирован при запуске этого приложения.
+    | Однако не стесняйтесь регистрировать столько, сколько вам нужно,
+    | поскольку псевдонимы "лениво" загружаются, чтобы они не замедляли производительность.
+    |
+    */
+    'aliases' => Facade::defaultAliases()->merge([
+        // 'Example' => App\Facades\Example::class,
+    ])->toArray(),
 
 ];
