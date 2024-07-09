@@ -20,12 +20,10 @@
 
 <div id="app" class="app">
         <section-header></section-header>
-        <main class="fullscreen" v-smooth-scroll="{ duration: 30000, offset: 200 }">
+        <main class="fullscreen scrollbar-container" data-scroll-container>
             <router-view></router-view>
         </main>
-        <footer>
-            <section-footer></section-footer>
-        </footer>
+        <section-footer></section-footer>
     </div>
 </body>
 </html>

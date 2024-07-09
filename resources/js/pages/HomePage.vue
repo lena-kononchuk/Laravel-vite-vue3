@@ -56,7 +56,7 @@
         <section class="section section__purple">
             <div class="wrapper">
                 <div class="row" style="justify-content: space-between;">
-                    <div class="col-xs-12 col-sm-6 white" style="max-width: 480px;">
+                    <div class="col-xs-12 col-sm-9 col-md-6 white" style="width: 440px;">
                         <div class="h2 box uppercase">Who We Are</div>
                         <div class="text box">Have you ever dreamed about the perfect place to live? Your
                             definition
@@ -74,19 +74,20 @@
                             mountain views, Cyprus is the place to be!</div>
                         <router-link to="/about" class="button button--yellow">More about us</router-link>
                     </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="card card--grey flex" style="gap:40px">
-                            <div class="background"
-                                style="background-image: url('/img/team/founder.jpg'); width: 200px; height: 350px; border-radius:10px;">
+                    <div class="col-xs-10 col-sm-10 col-md-6">
+                        <div class="row card card--grey">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="background"
+                                    style="background-image: url('/img/team/founder.jpg'); border-radius:10px;">
+                                </div>
                             </div>
-                            <div>
+                            <div class="col-xs-12 col-sm-6">
                                 <div class="h4 box purple">FOUNDER</div>
                                 <div class="text box--small">Anastasia Papaharidemou</div>
                                 <router-link to="/enquiry" class="button button--yellow">Contact</router-link>
 
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

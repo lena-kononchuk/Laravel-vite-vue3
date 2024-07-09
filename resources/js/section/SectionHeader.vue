@@ -4,7 +4,7 @@
             <div class="flex middle-sm" style="justify-content: space-between;">
                 <router-link to="/" class="header-logo"></router-link>
                 <nav class="navbar">
-                    <ul class="nav__links flex select">
+                    <ul class="navbar__links flex select">
                         <li><router-link class="link" to="/">HOME</router-link></li>
                         <li><router-link class="link" to="/about">ABOUT US</router-link></li>
                         <li @click="toggleServicesMenu" :class="{ 'active': servicesMenuOpen }" style="cursor: pointer;"

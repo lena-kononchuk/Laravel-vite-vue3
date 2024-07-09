@@ -1,7 +1,7 @@
 <template>
     <div class="section services section__yellow">
         <div class="wrapper">
-            <div class="box3x center-sm">
+            <div class="box3x center-xs">
                 <div class="h2 box uppercase">
                     <slot name="title"></slot>
                 </div>
@@ -11,7 +11,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-6 col-sm-3" v-for="(item, index) in items" :key="index">
-                    <div class="center-sm">
+                    <div class="center-xs">
                         <div class="box">
                             <slot name="services-image" :item="item">
                                 <img :src="item.image" class="circle" alt="">

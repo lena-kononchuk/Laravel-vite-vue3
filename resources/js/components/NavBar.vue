@@ -1,4 +1,7 @@
 <template>
+
+</template>
+<!-- <template>
     <nav class="navbar">
         <div class="container">
             <router-link to="/" class="logo header__logo"></router-link>
@@ -11,7 +14,7 @@
                 <li><router-link to="/migration">MIGRATION</router-link></li>
                 <li><router-link to="/enquiry">CONTACT US</router-link></li>
             </ul>
-            <button class="contact-button">Get in touch</button>
+            <button class="button button--yellow">Get in touch</button>
         </div>
     </nav>
 </template>
@@ -76,4 +79,4 @@ export default {
     background-color: #e6d278;
     /* Slightly darker shade for hover effect */
 }
-</style>
+</style> -->

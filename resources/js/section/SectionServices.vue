@@ -1,7 +1,7 @@
 <template>
     <div class="section services section__purple">
         <div class="wrapper">
-            <div class="box center-sm">
+            <div class="box center-xs">
                 <div class="h2 white">
                     <slot name="title">
                         <div>{{ title }}</div>
@@ -11,7 +11,7 @@
             <div class="center-sm separator box2x"></div>
 
             <div class="row">
-                <div class="col-xs-6 col-sm-4" v-for="(item, index) in items" :key="index">
+                <div class="col-xs-12 col-sm-6 col-md-4 center-xs" v-for="(item, index) in items" :key="index">
                     <div class="card center-sm">
                         <div class="image image--large" style="background: white;">
                             <slot name="image" :item="item">

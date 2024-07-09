@@ -1,14 +1,18 @@
 <template>
     <div class="section background__linear blue-purple" id="enquiry">
         <div class="wrapper">
-            <div class="center-sm box3x">
+            <div class="center-xs box3x">
                 <div class="h2 box">Contact Us</div>
-                <div class="center-sm separator box3x"></div>
-                <div class="flex center-sm middle-sm" style="flex-direction: column;">
-                    <i class="small fas fa-phone-alt yellow circle circle--small flex center-sm middle-sm"></i>
-                    <a class="h4 purple" href="tel:+3579056759">+357 9056759</a>
-                    <i class="small fas fa-envelope yellow circle circle--small flex center-sm middle-sm"></i>
-                    <a class="h4 purple" href="mailto:contact@pamrelocation.com">contact@pamrelocation.com</a>
+                <div class="center-xs separator box3x"></div>
+                <div class="center-xs middle-sm flex-vertical box2x" style="align-items: center;">
+                    <i
+                        class="small fas fa-phone-alt yellow circle circle--small flex center-xs middle-xs box--small"></i>
+                    <a class="h4 purple link" href="tel:+3579056759">+357 9056759</a>
+                </div>
+                <div class="center-xs middle-sm flex-vertical" style="align-items: center;">
+                    <i
+                        class="small fas fa-envelope yellow circle circle--small flex center-xs middle-xs box--small"></i>
+                    <a class="h4 purple link" href="mailto:contact@pamrelocation.com">contact@pamrelocation.com</a>
                 </div>
             </div>
             <div class="form card card__form center-xs box">
