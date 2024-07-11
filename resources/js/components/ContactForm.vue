@@ -2,7 +2,7 @@
     <div class="section background__linear blue-purple" id="enquiry">
         <div class="wrapper">
             <div class="center-xs box3x">
-                <div class="h2 box">Contact Us</div>
+                <div class="h2 box uppercase">Contact Us</div>
                 <div class="center-xs separator box3x"></div>
                 <div class="center-xs middle-sm flex-vertical box2x" style="align-items: center;">
                     <i

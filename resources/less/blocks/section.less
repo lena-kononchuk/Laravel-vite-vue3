@@ -15,7 +15,10 @@
     background: linear-gradient(90.49deg, #53269D 0%, #6D31D0 100.2%);
     }
     &__swiper{
-        padding-top: 130px;
+
+        .xs({
+            padding-top: 40px;
+        });
     }
     &__header
     {
@@ -26,5 +29,11 @@
     {
     padding-top: 40px;
     padding-bottom: 40px;
+    }
+    &__modified
+    {
+    .sm({
+            padding: 0;
+        });
     }
 }

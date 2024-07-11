@@ -8,13 +8,13 @@
                 <router-link :to="item.buttonLink" class="button button--primary">Find Out More</router-link>
             </template>
         </section-services>
-        <section class="section">
+        <section class="section section__modified">
             <div class="row">
-                <div class="col-xs-12 col-sm-4 overflow">
+                <div class="col-xs-12 col-sm-12 col-md-4 overflow">
                     <div class="background" style="background-image: url('/img/move/image_villa.jpg')"></div>
                 </div>
-                <div class="col-xs-12 col-sm-4 relative">
-                    <div class="center-sm middle-sm" style="padding: 0 50px;">
+                <div class="col-xs-12 col-sm-12 col-md-4 relative">
+                    <div class="center-xs middle-sm" style="padding: 20px;">
                         <div class="h2 box uppercase">Moving to Paradise</div>
                         <div class="text box">Have you ever dreamed about the perfect place to live? Your definition of
                             perfect
@@ -35,7 +35,7 @@
                         <router-link to="/immigration" class="button button--primary">Find Out More</router-link>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 overflow">
+                <div class="col-xs-12 col-sm-12 col-md-4 overflow">
                     <div class="background" style="background-image: url('/img/move/image_villas.jpg')"></div>
 
                 </div>
@@ -56,7 +56,7 @@
         <section class="section section__purple">
             <div class="wrapper">
                 <div class="row" style="justify-content: space-between;">
-                    <div class="col-xs-12 col-sm-9 col-md-6 white" style="width: 440px;">
+                    <div class="col-xs-12 col-sm-12 col-md-6 white" style="width: 440px;">
                         <div class="h2 box uppercase">Who We Are</div>
                         <div class="text box">Have you ever dreamed about the perfect place to live? Your
                             definition
@@ -74,14 +74,14 @@
                             mountain views, Cyprus is the place to be!</div>
                         <router-link to="/about" class="button button--yellow">More about us</router-link>
                     </div>
-                    <div class="col-xs-10 col-sm-10 col-md-6">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
                         <div class="row card card--grey">
                             <div class="col-xs-12 col-sm-6">
                                 <div class="background"
                                     style="background-image: url('/img/team/founder.jpg'); border-radius:10px;">
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6">
+                            <div class="col-xs-12 col-sm-6 center-xs">
                                 <div class="h4 box purple">FOUNDER</div>
                                 <div class="text box--small">Anastasia Papaharidemou</div>
                                 <router-link to="/enquiry" class="button button--yellow">Contact</router-link>

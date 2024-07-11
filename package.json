@@ -31,7 +31,9 @@
         "svgmap": "^2.7.1",
         "swiper": "^11.1.4",
         "vee-validate": "^4.13.1",
+        "vue-burger-menu": "^2.0.5",
         "vue-router": "^4.3.2",
+        "vue3-burger-menu": "^1.1.1",
         "vue3-google-map": "^0.20.0",
         "vue3-smooth-scroll": "^0.8.1",
         "vuex": "^4.1.0"

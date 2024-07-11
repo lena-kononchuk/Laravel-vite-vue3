@@ -1,18 +1,54 @@
 .navbar{
 
 
-    &__links .active ul {
-    display: block;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: @Purple;
+    &__links .active ul
+    {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: @Purple;
 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding: 10px;
-    margin-top: 7px;
-    min-width: 200px;
-    list-style: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 10px;
+        margin-top: 7px;
+        min-width: 200px;
+        list-style: none;
+        list-style-type: none;
+    }
 }
-}
+.bm-burger-button {
+        position: fixed;
+        width: 40px;
+        height: 30px;
+        left: auto !important;
+        right: 0;
+        top: 11px !important;
+            .xs({
+                top: 26px !important;
+            });
+
+    }
+    .bm-burger-bars{
+        background-color: white !important;
+    }
+    .line-style {
+        height: 2px !important;
+    }
+    .bm-menu{
+        padding-top: 40px !important;
+        background-image: linear-gradient(180deg,  #828CDE 0%,  #6D31D0 100%);
+        color: @LightYellow !important;
+
+    }
+    .bm-item-list>*{
+        display: block !important;
+    }
+    .bm-item-list{
+        color: @LightYellow !important;
+    }
+    .bm-cross {
+        background:  @LightYellow !important;
+    }
+

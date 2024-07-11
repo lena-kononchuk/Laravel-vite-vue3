@@ -2,7 +2,7 @@
     <div class="section" style="background-color: #F6F5EC;">
         <div class="wrapper">
             <div class="row">
-                <div class="col-xs-6  col-sm-12 col-md-7">
+                <div class="col-xs-12  col-sm-12 col-md-7">
                     <div class="h3 purple box">FIND THE IDEAL LOCATION TO CALL HOME</div>
                     <div class="text box">Tap on any city to learn more about it</div>
                     <GoogleMap :api-key="apiKey" style="width: 100%; height: 450px" :center="center" :zoom="9">
@@ -12,13 +12,13 @@
                         </MarkerCluster>
                     </GoogleMap>
                 </div>
-                <div class="col-xs-6 col-sm-12 col-md-5" v-if="selectedCity">
-                    <div class="card center-sm dark-blue">
-                        <div v-if="selectedCity.images && selectedCity.images.length" class="box--small flex">
+                <div class="col-xs-12 col-sm-12 col-md-5" v-if="selectedCity">
+                    <div class="card  dark-blue center-xs">
+                        <div v-if="selectedCity.images && selectedCity.images.length" class="box--small flex center-xs">
                             <img v-for="(image, index) in selectedCity.images" :src="image" :alt="selectedCity.name"
-                                class="image image--small" :key="index" />
+                                class="image image--small box--small" :key="index" />
                         </div>
-                        <div class="h3">{{ selectedCity.name }}</div>
+                        <div class="h3 box--small">{{ selectedCity.name }}</div>
                         <div v-html="formattedInfo" class="text"></div>
                     </div>
                 </div>

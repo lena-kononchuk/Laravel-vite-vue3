@@ -1,0 +1,33 @@
+.link{
+    text-decoration: none;
+    position: relative;
+    color: @White;
+    list-style-type: none;
+    list-style: none;
+
+    &__yellow
+    {
+    color: @LightYellow !important;
+    }
+
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        border-radius: 4px;
+        background-color: @LightYellow;
+        bottom: -2px;
+        left: 0;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .3s ease-in-out;
+        }
+
+        &:hover:before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+}

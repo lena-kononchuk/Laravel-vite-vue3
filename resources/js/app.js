@@ -15,6 +15,9 @@ import SectionHeader from './section/SectionHeader.vue';
 import DisclaimerPage from './pages/DisclaimerPage.vue';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.vue';
 import enquiryPage from './pages/ContactPage.vue';
+import Navigation from './components/Navigation.vue';
+import NavMobile from './components/NavMobile.vue';
+
 
 
 
@@ -24,7 +27,7 @@ console.log("JavaScript файл исполняется...");
 
 const routes = [
     { path: '/', component: HomePage },
-    // { path: '/services', component: ServicesPage },
+    { path: '/services', component: ServicesPage },
     { path: '/about', component: AboutPage },
     { path: '/immigration', component: ImmigrationPage },
     { path: '/services-family', component: ServicesFamilyPage },
@@ -57,6 +60,8 @@ const app = createApp({});
 app.component('section-footer', SectionFooter);
 app.component('section-header', SectionHeader);
 app.component('contact-form', enquiryPage);
+app.component('navigation', Navigation);
+app.component('nav-mobile', NavMobile);
 
 app.use(router);
 app.mount('#app');
