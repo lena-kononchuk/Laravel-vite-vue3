@@ -10,9 +10,6 @@ export default defineConfig({
         }),
         vue(),
     ],
-    build: {
-        outDir: 'public',
-    },
     optimizeDeps: {
         include: ['vue', 'vue-router', 'fast-deep-equal', '@fawmi/vue-google-maps']
     },
