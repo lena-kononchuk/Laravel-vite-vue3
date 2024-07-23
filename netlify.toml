@@ -1,6 +1,6 @@
 [build]
-  publish = "public" #
-  command = "npm run build" #
+  publish = "public"
+  command = "npm run build && composer install --no-dev && php artisan optimize"
 
 [[redirects]]
   from = "/*"
