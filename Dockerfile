@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     git \
     unzip \
+    nginx \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -93,8 +94,17 @@ RUN php artisan route:cache
 # Запуск миграций
 RUN php artisan migrate --force || true
 
-# Запуск сервера
-CMD ["php-fpm"]
+# Копирование скрипта запуска
+COPY start.sh /start.sh
 
-# Открыть порт для FPM
-EXPOSE 9000
+# Установка прав для скрипта
+RUN chmod +x /start.sh
+
+# Настройка Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Открытие портов
+EXPOSE 80 9000
+
+# Запуск Nginx и PHP-FPM
+CMD ["/start.sh"]
