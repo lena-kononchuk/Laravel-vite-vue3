@@ -1,26 +1,24 @@
-# Use the official PHP image
+# Используем официальный PHP образ
 FROM php:8.2-fpm
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libonig-dev libxml2-dev
+# Устанавливаем рабочую директорию
+WORKDIR /var/www/html
 
-# Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install zip pdo pdo_mysql
+# Копируем composer.phar и устанавливаем Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Копируем исходный код приложения в контейнер
+COPY . .
 
-# Set working directory
-WORKDIR /var/www
+# Устанавливаем зависимости
+RUN composer install --optimize-autoloader --no-dev
 
-# Copy existing application directory contents
-COPY . /var/www
+# Устанавливаем права
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Устанавливаем PHP расширения
+RUN docker-php-ext-install pdo pdo_mysql
 
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
+# Запускаем PHP-FPM
 CMD ["php-fpm"]
+
