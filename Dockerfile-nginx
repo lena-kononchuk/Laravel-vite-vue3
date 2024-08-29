@@ -1,0 +1,8 @@
+# Базовый образ Nginx
+FROM nginx:latest
+
+# Копирование конфигурации Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Открытие порта для Nginx
+EXPOSE 80
