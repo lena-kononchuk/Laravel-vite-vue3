@@ -21,4 +21,3 @@ RUN docker-php-ext-install pdo pdo_mysql
 
 # Запускаем PHP-FPM
 CMD ["php-fpm"]
-
