@@ -1,64 +1,67 @@
-version: '3.8'
 services:
-  laravel.test:
-    build:
-      context: ./vendor/laravel/sail/runtimes/8.3
-      dockerfile: Dockerfile-php-fpm
-      args:
-        WWWGROUP: '1000'
-    image: sail-8.3/app
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
-    ports:
-      - '${APP_PORT:-80}:80'
-      - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
-    environment:
-      WWWUSER: '${WWWUSER}'
-      LARAVEL_SAIL: 1
-      XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-      XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-      IGNITION_LOCAL_SITES_PATH: '${PWD}'
-    volumes:
-      - '.:/var/www/html'
-    networks:
-      - sail
-    depends_on:
-      - postgres
-      - php-fpm
-  postgres:
-    image: postgres:13
-    ports:
-      - '${FORWARD_DB_PORT:-5432}:5432'
-    environment:
-      POSTGRES_DB: '${DB_DATABASE}'
-      POSTGRES_USER: '${DB_USERNAME}'
-      POSTGRES_PASSWORD: '${DB_PASSWORD}'
-    volumes:
-      - 'sail-postgres:/var/lib/postgresql/data'
-    networks:
-      - sail
-    healthcheck:
-      test:
-        - CMD
-        - pg_isready
-        - '-U${DB_USERNAME}'
-      retries: 3
-      timeout: 5s
-  nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile-nginx
-    ports:
-      - "8080:80"
-    depends_on:
-      - php-fpm
-  php-fpm:
-    build:
-      context: .
-      dockerfile: Dockerfile-php-fpm
+    laravel.test:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.3
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '1000'
+        image: sail-8.3/app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            - postgres
+            - php-fpm
+    postgres:
+        image: postgres:13
+        ports:
+            - '${FORWARD_DB_PORT:-5432}:5432'
+        environment:
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD}'
+        volumes:
+            - 'sail-postgres:/var/lib/postgresql/data'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - pg_isready
+                - '-U${DB_USERNAME}'
+            retries: 3
+            timeout: 5s
+    nginx:
+        image: nginx:custom
+        ports:
+            - '8080:80'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+    php-fpm:
+        image: php:8.2-fpm
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
 networks:
-  sail:
-    driver: bridge
+    sail:
+        driver: bridge
 volumes:
-  sail-postgres:
-    driver: local
+    sail-postgres:
+        driver: local
+
+
