@@ -35,7 +35,6 @@ class EnquiryController extends Controller
         $enquiry->save();
 
         // Respond with a JSON success message
-        // return response()->json(['status' => true]);
-        return response()->json(['errors' => $validator->errors()], 422);
+        return response()->json(['status' => true]);
     }
 }

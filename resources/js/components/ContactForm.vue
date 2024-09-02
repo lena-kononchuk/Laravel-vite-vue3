@@ -21,35 +21,62 @@
                     <div class="h3 box2x uppercase">Your request is being reviewed!</div>
                     <div class="text">One of our team members will get in touch with you soon</div>
                 </div>
+                <!-- Form Displayed Before Submission -->
                 <div v-else>
                     <div class="h3 uppercase box">Send Inquiry</div>
                     <form @submit.prevent="submitForm" style="max-width: 580px; margin: 0 auto;">
                         <div class="row">
                             <div class="box col-xs-12 col-sm-6">
-                                <input type="text" class="input" placeholder="Your Name" v-model="formData.name"
-                                    :disabled="formIsSubmitting" :class="{ 'is-invalid': errors.name }" required />
-                                <span v-if="errors.name" class="text-danger">{{ errors.name }}</span>
+                                <div class="box2x relative">
+                                    <input type="text" id="name" v-model="formData.name" class="input"
+                                        :class="{ 'input--error': formData.name && !isNameValid }"
+                                        @focus="handleFocus('name')" @blur="handleBlur('name')" :maxlength="60"
+                                        :disabled="formIsSubmitting || isLoading" tabindex="1" />
+                                    <label for="name" class="input__label"
+                                        :class="{ 'active': isInputActive.name || formData.name, 'label--error': formData.name && !isNameValid }">
+                                        Your name
+                                    </label>
+                                    <span v-if="formData.name && !isNameValid" class="input__error">Name must be 3-60
+                                        characters long.</span>
+                                </div>
                             </div>
                             <div class="box col-xs-12 col-sm-6">
-                                <input type="email" class="input" placeholder="Email" v-model="formData.email"
-                                    :disabled="formIsSubmitting" :class="{ 'is-invalid': errors.email }" required />
-                                <span v-if="errors.email" class="text-danger">{{ errors.email }}</span>
+                                <div class="box2x relative">
+                                    <input type="email" id="email" v-model="formData.email" class="input"
+                                        :class="{ 'input--error': formData.email && !isEmailValid }"
+                                        @focus="handleFocus('email')" @blur="handleBlur('email')" :maxlength="160"
+                                        :disabled="formIsSubmitting || isLoading" tabindex="2" />
+                                    <label for="email" class="input__label"
+                                        :class="{ 'active': isInputActive.email || formData.email, 'label--error': formData.email && !isEmailValid }">
+                                        Email
+                                    </label>
+                                    <span v-if="formData.email && !isEmailValid" class="input__error">Enter a valid
+                                        email address.</span>
+                                </div>
                             </div>
                             <div class="box col-xs-12 col-sm-6">
-                                <input type="text" class="input" placeholder="Subject" v-model="formData.subject"
-                                    :disabled="formIsSubmitting" :class="{ 'is-invalid': errors.subject }" required />
-                                <span v-if="errors.subject" class="text-danger">{{ errors.subject }}</span>
+                                <div class="box2x relative">
+                                    <input type="text" id="subject" v-model="formData.subject" class="input"
+                                        :class="{ 'input--error': formData.subject && !isSubjectValid }"
+                                        @focus="handleFocus('subject')" @blur="handleBlur('subject')" :maxlength="100"
+                                        :disabled="formIsSubmitting || isLoading" tabindex="3" />
+                                    <label for="subject" class="input__label"
+                                        :class="{ 'active': isInputActive.subject || formData.subject, 'label--error': formData.subject && !isSubjectValid }">
+                                        Subject
+                                    </label>
+                                    <span v-if="formData.subject && !isSubjectValid" class="input__error">Subject must
+                                        be 3-100 characters long.</span>
+                                </div>
                             </div>
-                            <div class="box col-xs-12 col-sm-6">
-                                <input type="tel" class="input" placeholder="Phone" v-model="formData.phone"
-                                    :disabled="formIsSubmitting" :class="{ 'is-invalid': errors.phone }" />
-                                <span v-if="errors.phone" class="text-danger">{{ errors.phone }}</span>
-                            </div>
+                            <custom-input-phone :class="phoneClass" v-model="formData.phone" :is-valid="isPhoneValid"
+                                :disabled="formIsSubmitting || isLoading" tabindex="4"></custom-input-phone>
                         </div>
-                        <textarea placeholder="Your message" class="input input--textarea box"
-                            v-model="formData.message" :disabled="formIsSubmitting"
-                            :class="{ 'is-invalid': errors.message }" required></textarea>
-                        <span v-if="errors.message" class="text-danger">{{ errors.message }}</span>
+                        <div class="box2x relative">
+                            <textarea placeholder="Your message" class="input input--textarea box"
+                                v-model="formData.message" :disabled="formIsSubmitting"
+                                :class="{ 'is-invalid': errors.message }" required></textarea>
+                            <span v-if="errors.message" class="text-danger">{{ errors.message }}</span>
+                        </div>
                         <div class="box relative">
                             <label class="checkbox">
                                 <input class="checkbox__input" type="checkbox" v-model="formData.agree"
@@ -62,7 +89,6 @@
                             </label>
                             <span v-if="errors.agree" class="text-danger">{{ errors.agree }}</span>
                         </div>
-
                         <button :disabled="formIsSubmitting || !isFieldValid" :class="{ loading: formIsSubmitting }"
                             type="submit" class="button button--yellow">
                             <span v-if="formIsSubmitting">Submitting...</span>
@@ -76,17 +102,12 @@
 </template>
 
 <script setup>
-// Importing necessary Vue composition API functions and axios for HTTP requests
-import { reactive, ref, computed } from 'vue';
+import { ref, computed } from 'vue';
 import axios from 'axios';
+import CustomInputPhone from './CustomInputPhone.vue';
 
-// Reactive state to track if the form has been submitted
-const isSubmitted = ref(false);
-// Reactive state to indicate if the form is currently being submitted
-const formIsSubmitting = ref(false);
-
-// Reactive state for form data
-const formData = reactive({
+// Reactive form data object
+const formData = ref({
     name: '',
     email: '',
     subject: '',
@@ -95,54 +116,67 @@ const formData = reactive({
     agree: false
 });
 
-// Reactive state for form errors
-const errors = reactive({
-    name: '',
-    email: '',
-    subject: '',
-    phone: '',
-    message: '',
-    agree: ''
+// Reactive state for input focus
+const isInputActive = ref({
+    name: false,
+    email: false,
+    phone: false,
+    subject: false,
 });
 
-// Computed properties for field validation
-const isNameValid = computed(() => formData.name !== '' && formData.name.length >= 3);
+// Reactive state for loading and form submission status
+const isLoading = ref(false);
+const errors = ref({});
+const formIsSubmitting = ref(false);
+const isSubmitted = ref(false);
+
+const handleFocus = (field) => {
+    isInputActive.value[field] = true;
+};
+
+const handleBlur = (field) => {
+    isInputActive.value[field] = false;
+};
+
+
+
+
+// Input validation logic
+const isNameValid = computed(() => formData.value.name !== '' && formData.value.name.length >= 3 && formData.value.name.length <= 60);
 const isEmailValid = computed(() => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(formData.email).toLowerCase());
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(formData.value.email).toLowerCase());
 });
-const isMessageValid = computed(() => formData.message !== '' && formData.message.length >= 3);
-const isPhoneValid = computed(() => formData.phone !== '' && formData.phone.replace(/\D/g, '').length >= 10);
-const isAgreeValid = computed(() => formData.agree);
+const isPhoneValid = computed(() => formData.value.phone !== '' && formData.value.phone.replace(/\D/g, '').length >= 10);
+const isSubjectValid = computed(() => formData.value.subject !== '' && formData.value.subject.length >= 3 && formData.value.subject.length <= 100);
 
-// Computed property to check if all fields are valid
+// Check if all required fields are valid
 const isFieldValid = computed(() => {
-    return isNameValid.value && isEmailValid.value && isMessageValid.value && isPhoneValid.value && isAgreeValid.value;
+    return isNameValid.value && isEmailValid.value && isPhoneValid.value && formData.value.agree;
 });
 
-// Function to handle form submission
+// Determine phone input class based on validity
+const phoneClass = computed(() => (isPhoneValid.value ? 'valid' : 'invalid'));
+
+// Handle form submission
 const submitForm = async () => {
+    // Prevent submission if already submitting or fields are invalid
     if (formIsSubmitting.value || !isFieldValid.value) return;
 
-    // Clear previous errors
-    Object.keys(errors).forEach(key => errors[key] = '');
+    formIsSubmitting.value = true;
 
     try {
-        formIsSubmitting.value = true;
-        const response = await axios.post('/api/enquiry', { ...formData });
-        console.log('Successfully saved:', response.data);
-        // Clear form after successful submission
-        Object.keys(formData).forEach(key => formData[key] = '');
-        isSubmitted.value = true;
+        const response = await axios.post('/api/enquiry', formData.value);
+        console.log('Response data:', response.data);
+
+        // Show success message if response is successful
+        if (response.data.status) {
+            isSubmitted.value = true;
+        }
     } catch (error) {
-        console.error('Error submitting form:', error);
+        console.error('Form submission error:', error);
         if (error.response && error.response.data.errors) {
-            const serverErrors = error.response.data.errors;
-            Object.keys(serverErrors).forEach(key => {
-                if (errors[key] !== undefined) {
-                    errors[key] = serverErrors[key][0];
-                }
-            });
+            errors.value = error.response.data.errors;
         }
     } finally {
         formIsSubmitting.value = false;

@@ -22,10 +22,49 @@
         height: 200px;
         min-height: 100px;
         resize: none;
-
+    }
+    &__label {
+      position: absolute;
+      left: 0.8em;
+      opacity: 0.45;
+      font-weight: normal;
+      transition: all 0.2s ease-out;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0.15em 0.25em;
+      line-height: 1;
+      box-sizing: border-box;
     }
 
+    &__label.active {
+      top: 8px;
+      transform: translateY(-100%) scale(1);
+      font-size: 12px;
+      opacity: 1;
+      left: calc(-0.25em + 20px);
+      background-color: @White;
+      border-radius: 20px;
+      padding: 0 5px;
+    }
+    &__error {
+      color:@red;
+      position: absolute;
+      bottom: -17px;
+      left: 16px;
+      font-size: 12px;
+    }
+
+      &__label.label--error {
+        color: @red;
+      }
+
+      &--error {
+        border: 1px solid @red;
+        padding: 13px 15px;
+      }
 }
+
+
 .checkbox {
     position: relative;
     display: inline-block;
@@ -79,8 +118,6 @@
         }
     }
 }
-
-
 
 
 
