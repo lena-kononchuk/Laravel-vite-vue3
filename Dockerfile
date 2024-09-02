@@ -1,28 +1,45 @@
-# Use the official PHP image
-FROM php:8.2-fpm
+# Используем официальный образ PHP как базовый
+FROM php:8.3-fpm
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libonig-dev libxml2-dev
+# Устанавливаем зависимости системы
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libonig-dev \
+    libxml2-dev \
+    unzip \
+    git \
+    zlib1g-dev \
+    libicu-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
+# Устанавливаем расширения PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
     && docker-php-ext-install zip pdo pdo_mysql
 
-# Запускаем PHP-FPM
-CMD ["php-fpm"]
-# Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Устанавливаем Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Создаем рабочую директорию
 WORKDIR /var/www
 
-# Copy existing application directory contents
-COPY . /var/www
+# Копируем файлы приложения в контейнер
+COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Устанавливаем зависимости PHP
+RUN composer install --no-dev --no-scripts --no-autoloader
 
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
+# Копируем файл php.ini
+COPY php.ini /usr/local/etc/php/
+
+# Настраиваем рабочую директорию и права доступа
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R 755 /var/www
+
+# Запускаем приложение через PHP-FPM
 CMD ["php-fpm"]

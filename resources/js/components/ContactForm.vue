@@ -108,7 +108,7 @@ const errors = reactive({
 // Computed properties for field validation
 const isNameValid = computed(() => formData.name !== '' && formData.name.length >= 3);
 const isEmailValid = computed(() => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(formData.email).toLowerCase());
 });
 const isMessageValid = computed(() => formData.message !== '' && formData.message.length >= 3);

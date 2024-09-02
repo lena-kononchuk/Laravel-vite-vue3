@@ -20,7 +20,7 @@ class EnquiryController extends Controller
             'name' => 'required|string|max:191',
             'email' => 'required|string|max:191|email',
             'message' => 'required|string|max:191',
-            'phone' => 'required|string|max:191',
+            'phone' => 'nullable|string|max:191',
             'subject' => 'required|string|max:191',
         ]);
 
@@ -35,6 +35,7 @@ class EnquiryController extends Controller
         $enquiry->save();
 
         // Respond with a JSON success message
-        return response()->json(['status' => true]);
+        // return response()->json(['status' => true]);
+        return response()->json(['errors' => $validator->errors()], 422);
     }
 }

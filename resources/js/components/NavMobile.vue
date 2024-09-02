@@ -26,6 +26,8 @@
 <script setup>
 import { ref } from 'vue';
 import { Slide } from 'vue3-burger-menu';
+import Vue3BurgerMenu from 'vue3-burger-menu';
+
 
 const menuOpen = ref(false);
 
