@@ -38,10 +38,6 @@ RUN php artisan route:cache
 # Устанавливаем рабочую директорию
 WORKDIR /var/www/html
 
-# Запуск миграций
-RUN php artisan migrate --force || true
-# Публикуем порт 80
-EXPOSE 80
+# Запускаем PHP-FPM
+CMD ["php-fpm"]
 
-# Запускаем Nginx
-CMD ["nginx", "-g", "daemon off;"]
