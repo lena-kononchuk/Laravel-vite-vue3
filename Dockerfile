@@ -27,12 +27,19 @@ FROM nginx:latest AS nginx
 # Копируем конфигурационный файл Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
+# Установка зависимостей приложения
+RUN composer install --optimize-autoloader --no-dev || true
 # Копируем код из предыдущего образа
 COPY --from=php /var/www/html /var/www/html
 
+# Кэширование конфигураций и маршрутов
+RUN php artisan config:cache
+RUN php artisan route:cache
 # Устанавливаем рабочую директорию
 WORKDIR /var/www/html
 
+# Запуск миграций
+RUN php artisan migrate --force || true
 # Публикуем порт 80
 EXPOSE 80
 
