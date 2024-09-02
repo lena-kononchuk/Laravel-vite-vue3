@@ -6,7 +6,7 @@ This project uses the following technologies:
 - **Vue 3**: JavaScript framework for building user interfaces.
 - **Laravel**: PHP framework for server-side logic and APIs.
 - **Vite**: Build tool for fast development and optimized builds.
-- **PostgreSQL**: Relational database management system.
+- **MySQL**: Relational database management system.
 - **Docker**: Containerization platform for consistent development and deployment environments.
 - **Axios**: Promise-based HTTP client for making API requests.
 - **Custom Components**: Custom Vue components for enhanced functionality.
