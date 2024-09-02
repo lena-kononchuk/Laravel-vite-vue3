@@ -23,7 +23,6 @@ services:
             - sail
         depends_on:
             - postgres
-            - php-fpm
     postgres:
         image: postgres:13
         ports:
@@ -43,25 +42,9 @@ services:
                 - '-U${DB_USERNAME}'
             retries: 3
             timeout: 5s
-    nginx:
-        image: nginx:custom
-        ports:
-            - '8080:80'
-        volumes:
-            - '.:/var/www/html'
-        networks:
-            - sail
-    php-fpm:
-        image: php:8.2-fpm
-        volumes:
-            - '.:/var/www/html'
-        networks:
-            - sail
 networks:
     sail:
         driver: bridge
 volumes:
     sail-postgres:
         driver: local
-
-
