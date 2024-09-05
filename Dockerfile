@@ -35,7 +35,9 @@ COPY . .
 RUN composer install --no-dev --no-scripts --no-autoloader
 
 # Копируем файл php.ini
-COPY php.ini /usr/local/etc/php/
+
+COPY ./php.ini /usr/local/etc/php/php.ini
+
 
 # Настраиваем рабочую директорию и права доступа
 RUN chown -R www-data:www-data /var/www
