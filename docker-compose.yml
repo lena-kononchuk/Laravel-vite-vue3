@@ -4,7 +4,7 @@ services:
       context: ./vendor/laravel/sail/runtimes/8.3
       dockerfile: Dockerfile
       args:
-        WWWGROUP: '1000'  # Указываем корректное значение для группы
+        WWWGROUP: '1000'
     image: sail-8.3/app
     extra_hosts:
       - 'host.docker.internal:host-gateway'
@@ -17,7 +17,7 @@ services:
       XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
       XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
       IGNITION_LOCAL_SITES_PATH: '${PWD}'
-      WWWGROUP: '1000'  # Указываем корректное значение для группы
+      WWWGROUP:
     volumes:
       - '.:/var/www/html'
     networks:

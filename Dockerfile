@@ -7,8 +7,6 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libfreetype6-dev \
     libzip-dev \
-    libpng-dev \
-    libjpeg-dev \
     libonig-dev \
     libxml2-dev \
     unzip \
@@ -19,14 +17,12 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Устанавливаем Node.js и npm
-# Устанавливаем зависимости Node.js и npm
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs
 
-
 # Устанавливаем расширения PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo pdo_mysql
+    && docker-php-ext-install gd zip pdo pdo_mysql sodium
 
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -53,5 +49,5 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
 
-# Запускаем приложение через PHP-FPM
-CMD ["php-fpm"]
+# Запускаем приложение через PHP-FPM и Nginx
+CMD php-fpm -D && nginx -g 'daemon off;'
