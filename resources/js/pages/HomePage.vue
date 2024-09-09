@@ -1,7 +1,6 @@
 <template>
     <div>
         <section-hero-swiper class="scroller"></section-hero-swiper>
-
         <section-services :items="services">
             <template #title> Our Services</template>
             <template #button="{ item }">
@@ -83,7 +82,10 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 center-xs">
                                 <div class="h4 box purple">FOUNDER</div>
-                                <div class="text box--small">Anastasia Papaharidemou</div>
+                                <div class="text box--small ">Anastasia Papaharidemou</div>
+                                <div class="text box2x">Founder and CEO, helps streamline and
+                                    automate immigration
+                                    complexity and enable informed relocation decisions at lower cost.</div>
                                 <router-link to="/enquiry" class="button button--yellow">Contact</router-link>
 
                             </div>
@@ -101,6 +103,7 @@
         <section-logo></section-logo>
 
         <section-swiper-faq> </section-swiper-faq>
+
     </div>
 </template>
 
@@ -109,14 +112,11 @@ import { ref } from 'vue';
 import SectionHeroSwiper from '../section/SectionHeroSwiper.vue';
 import SectionServices from '../section/SectionServices.vue';
 import SectionLocation from '../section/SectionLocation.vue';
-import SectionImageText from '../section/SectionImageText.vue';
 import SectionLogo from '../section/SectionLogo.vue';
 import ContactForm from '../components/ContactForm.vue';
 
-import SectionTextImage from '../section/SectionTextImage.vue';
 import SectionServicesItems from '../section/SectionServicesItems.vue';
 import SectionSwiperFaq from '../section/SectionSwiperFaq.vue';
-import SectionFooter from '../section/SectionFooter.vue';
 
 
 
