@@ -16,14 +16,12 @@
     @vite(['resources/less/app.less', 'resources/js/app.js'])
 </head>
 <body>
-
-
-<div id="app" class="app">
+    <div id="app" class="app">
         <section-header></section-header>
-        <main class="fullscreen scrollbar-container" data-scroll-container>
+        <div class="fullscreen scrollbar-container" data-scroll-container>
             <router-view></router-view>
-        </main>
-        <section-footer></section-footer>
+            <section-footer></section-footer>
+        </div>
     </div>
 </body>
 </html>
