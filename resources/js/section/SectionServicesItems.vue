@@ -14,7 +14,7 @@
                     <div class="center-xs">
                         <div class="box">
                             <slot name="services-image" :item="item">
-                                <img :src="item.image" class="circle" alt="">
+                                <img :src="item.image" class="circle lazyload" alt="images">
                             </slot>
                         </div>
                         <slot name="services-title" :item="item">

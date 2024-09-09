@@ -122,6 +122,22 @@ body
     flex-shrink: 0;
 }
 
+.text .content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8; /* Number of lines to show before truncation */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 240px; /* Adjust this based on the line height and number of lines */
+    transition: max-height 0.3s ease-out;
+}
+
+.text .content.show-more {
+    display: block;
+    -webkit-line-clamp: unset; /* Remove line clamp for expanded view */
+    max-height: none; /* Remove max-height restriction */
+}
+
 
 
 @import "blocks/section";
@@ -134,40 +150,6 @@ body
 @import "blocks/input";
 @import "blocks/nav";
 @import "blocks/link";
-
-
-
-
-
-.submenu{
-  position: relative;
-
-  z-index: 50;
-}
-
-.submenu li {
-  border-radius: 6px;
-  border: solid 1px @Purple;
-  display: inline-block;
-  position: relative;
-}
-/* sub menu styles */
-.submenu .submenu--list {
-
-  min-width: 220px;
-  position: absolute;
-  padding: 10px;
-  margin-top: 5px;
-  text-align: left;
-  overflow: hidden;
-  border-radius: 5px;
-  background: @Purple;
-
-
-
-}
-
-
 
 
 

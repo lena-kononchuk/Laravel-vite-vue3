@@ -3,27 +3,47 @@ import { createApp } from 'vue';
 import './bootstrap';
 import axios from 'axios';
 
-import HomePage from './pages/HomePage.vue';
-import ServicesPage from './pages/ServicesPage.vue';
-import ImmigrationPage from './pages/ImmigrationPage.vue';
-import AboutPage from './pages/AboutPage.vue';
-import ServicesFamilyPage from './pages/ServicesFamilyPage.vue';
-import ServicesBusiness from './pages/ServicesBusiness.vue';
-import ServicesInvestments from './pages/ServicesInvestments.vue';
-import SectionFooter from './section/SectionFooter.vue';
-import SectionHeader from './section/SectionHeader.vue';
-import DisclaimerPage from './pages/DisclaimerPage.vue';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage.vue';
-import enquiryPage from './pages/ContactPage.vue';
-import Navigation from './components/Navigation.vue';
-import NavMobile from './components/NavMobile.vue';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import { defineAsyncComponent } from 'vue';
 
 
 
 
+// import HomePage from './pages/HomePage.vue';
+// import ServicesPage from './pages/ServicesPage.vue';
+// import ImmigrationPage from './pages/ImmigrationPage.vue';
+// import AboutPage from './pages/AboutPage.vue';
+// import ServicesFamilyPage from './pages/ServicesFamilyPage.vue';
+// import ServicesBusiness from './pages/ServicesBusiness.vue';
+// import ServicesInvestments from './pages/ServicesInvestments.vue';
+// import SectionFooter from './section/SectionFooter.vue';
+// import SectionHeader from './section/SectionHeader.vue';
+// import DisclaimerPage from './pages/DisclaimerPage.vue';
+// import PrivacyPolicyPage from './pages/PrivacyPolicyPage.vue';
+// import enquiryPage from './pages/ContactPage.vue';
+// import Navigation from './components/Navigation.vue';
+// import NavMobile from './components/NavMobile.vue';
 
 
-console.log("JavaScript файл исполняется...");
+
+const HomePage = defineAsyncComponent(() => import('./pages/HomePage.vue'));
+const ServicesPage = defineAsyncComponent(() => import('./pages/ServicesPage.vue'));
+const ImmigrationPage = defineAsyncComponent(() => import('./pages/ImmigrationPage.vue'));
+const AboutPage = defineAsyncComponent(() => import('./pages/AboutPage.vue'));
+const ServicesFamilyPage = defineAsyncComponent(() => import('./pages/ServicesFamilyPage.vue'));
+const ServicesBusiness = defineAsyncComponent(() => import('./pages/ServicesBusiness.vue'));
+const ServicesInvestments = defineAsyncComponent(() => import('./pages/ServicesInvestments.vue'));
+const SectionFooter = defineAsyncComponent(() => import('./section/SectionFooter.vue'));
+const SectionHeader = defineAsyncComponent(() => import('./section/SectionHeader.vue'));
+const DisclaimerPage = defineAsyncComponent(() => import('./pages/DisclaimerPage.vue'));
+const PrivacyPolicyPage = defineAsyncComponent(() => import('./pages/PrivacyPolicyPage.vue'));
+const enquiryPage = defineAsyncComponent(() => import('./pages/ContactPage.vue'));
+const Navigation = defineAsyncComponent(() => import('./components/Navigation.vue'));
+const NavMobile = defineAsyncComponent(() => import('./components/NavMobile.vue'));
+
+
+
 
 const routes = [
     { path: '/', component: HomePage },

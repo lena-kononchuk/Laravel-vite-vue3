@@ -1,5 +1,6 @@
 <template>
-    <div class="hero hero__small relative" ref="backgroundImage" :style="{ backgroundImage: 'url(' + bg + ')' }">
+    <div class="hero hero__small relative lazyload" ref="backgroundImage"
+        :style="{ backgroundImage: 'url(' + bg + ')' }">
 
         <div class="wrapper">
             <div class="hero__overlay"></div>

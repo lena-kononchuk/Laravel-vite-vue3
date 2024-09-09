@@ -15,7 +15,7 @@
                 Property investment means investing in the future and it comes with a huge range of opportunities
                 including:
             </div>
-            <div class="purple">
+            <div class="purple box">
                 <ul>
                     <li>Obtaining EU citizenship in 6 months</li>
                     <li>Creating your future home</li>

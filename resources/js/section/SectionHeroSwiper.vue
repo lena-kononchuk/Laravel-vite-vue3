@@ -64,7 +64,7 @@
                         <div v-for="(image, imgIndex) in slide.images" :key="imgIndex" class="card"
                             style="padding: 10px;">
                             <img :src="image" :alt="`Image of ${slide.cityNames[imgIndex]}`"
-                                class="image image--small box--small" />
+                                class="image image--small box--small lazyload" />
                             <div class="text">{{ slide.cityNames[imgIndex] }}</div>
                         </div>
                     </div>

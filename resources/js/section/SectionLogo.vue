@@ -9,7 +9,7 @@
             <swiper :spaceBetween="60" :modules="modules" :loop="true" :autoplay="{ delay: 1000 }"
                 :breakpoints="breakpoints" ref="swiper" class="mySwiper">
                 <swiper-slide v-for="(image, index) in partnerImages" :key="index">
-                    <img :src="image" :alt="'Partner Image ' + (index + 1)" class="logo">
+                    <img :src="image" :alt="'Partner Image ' + (index + 1)" class="logo lazyload">
                 </swiper-slide>
             </swiper>
         </div>

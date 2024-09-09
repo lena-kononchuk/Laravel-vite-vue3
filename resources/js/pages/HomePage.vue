@@ -10,7 +10,7 @@
         <section class="section section__modified">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-4 overflow">
-                    <div class="background" style="background-image: url('/img/move/image_villa.jpg')"></div>
+                    <div class="background lazyload" style="background-image: url('/img/move/image_villa.jpg')"></div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 relative">
                     <div class="center-xs middle-sm" style="padding: 20px;">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 overflow">
-                    <div class="background" style="background-image: url('/img/move/image_villas.jpg')"></div>
+                    <div class="background lazyload" style="background-image: url('/img/move/image_villas.jpg')"></div>
 
                 </div>
 
@@ -76,7 +76,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <div class="row card card--grey">
                             <div class="col-xs-12 col-sm-6">
-                                <div class="background"
+                                <div class="background lazyload"
                                     style="background-image: url('/img/team/founder.jpg'); border-radius:10px;">
                                 </div>
                             </div>

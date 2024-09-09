@@ -16,7 +16,7 @@
                     <div class="card  dark-blue center-xs">
                         <div v-if="selectedCity.images && selectedCity.images.length" class="box--small flex center-xs">
                             <img v-for="(image, index) in selectedCity.images" :src="image" :alt="selectedCity.name"
-                                class="image image--small box--small" :key="index" />
+                                class="image image--small box--small lazyload" :key="index" />
                         </div>
                         <div class="h3 box--small">{{ selectedCity.name }}</div>
                         <div v-html="formattedInfo" class="text"></div>

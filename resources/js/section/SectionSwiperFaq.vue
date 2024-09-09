@@ -7,7 +7,8 @@
                 class="swiperFaq box2x swiper__horizontal relative" :breakpoints="breakpoints">
                 <swiper-slide v-for="(slide, index) in slides" :key="index"
                     class="card card__image relative flex-vertical" :style="{ minHeight: '500px' }">
-                    <div class="image image--middle" style="background-image: url('/img/slider_image.jpg');"></div>
+                    <div class="image image--middle lazyload" style="background-image: url('/img/slider_image.jpg');">
+                    </div>
                     <div class="card card__text box" style="box-shadow:none">
                         <button class="button button--purple swiper__button box center-xs">
                             {{ slide.button }}

@@ -15,7 +15,7 @@
                     <div class="card center-xs">
                         <div class="image image--large" style="background: white;">
                             <slot name="image" :item="item">
-                                <img :src="item.image" alt="">
+                                <img :src="item.image" alt="images" class="lazyload">
                             </slot>
                         </div>
                         <div class="card card__text box">

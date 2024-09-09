@@ -25,7 +25,7 @@
                         </li>
                     </ul>
                 </li>
-                <li><router-link class="link" to="/immigration" @click="handleLinkClick">MIGRATION</router-link></li>
+                <li><router-link class="link" to="/immigration" @click="handleLinkClick">IMIGRATION</router-link></li>
                 <li><router-link class="link" to="/enquiry" @click="handleLinkClick">CONTACT US</router-link></li>
             </ul>
         </nav>
