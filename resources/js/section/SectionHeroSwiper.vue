@@ -1,6 +1,6 @@
 <template>
     <div class="section section__swiper hero relative"
-        :style="{ backgroundImage: `linear-gradient(50deg, #B7D6EF 30%, rgba(183, 214, 239, 0.6) 100%, rgba(183, 214, 239, 0) 10%), url(${currentBackground})` }">
+        :style="{ backgroundImage: `linear-gradient(100deg, rgb(183, 214, 239) 32%, rgba(183, 214, 239, 0.6) 49%, rgba(183, 214, 239, 0) 59%), url(${currentBackground})` }">
         <div class="swiper__overlay"></div>
         <div class="wrapper">
             <!-- Swiper with horizontal direction -->
