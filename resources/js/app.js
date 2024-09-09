@@ -57,6 +57,9 @@ console.log("Vue Router работает корректно...");
 
 const app = createApp({});
 
+
+
+
 app.component('section-footer', SectionFooter);
 app.component('section-header', SectionHeader);
 app.component('contact-form', enquiryPage);

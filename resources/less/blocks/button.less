@@ -24,6 +24,16 @@
         color: @White;
         background: linear-gradient(90.49deg, #53269D 0%, #6D31D0 100.2%);
 
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        transition: @duration;
+            &:hover{
+                background: linear-gradient(90.49deg, #53269D 0%, #6D31D0 100.2%);
+            }
+
         &--primary{
             padding: 16px 22px;
             line-height: 16px;
@@ -34,13 +44,13 @@
             border: 1px solid #FFEB80;
             color: @Purple;
             background: linear-gradient(96.1deg, #FFEB80 -22.07%, #FDBFA3 123.25%);
-            transition: background @duration;
+            transition: all @duration;
 
 
             &:hover{
                 color: @Yellow;
                 background: linear-gradient(90.49deg, #53269D 0%, #6D31D0 100.2%);
-                transition: @duration;
+
             }
         }
 
@@ -50,7 +60,7 @@
             height: 48px;
             font-size: 20px;
             font-weight: 600;
-            line-height: 20px;
+            line-height: 16px;
 
             border-radius: 30px;
             background: @Yellow ;
@@ -95,4 +105,31 @@
         margin-top: 16px;
         });
         }
-}
+
+
+        &--expand {
+        margin-top: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        gap: 5px;
+        color: @Purple;
+        background: linear-gradient(96.1deg, #FFEB80 -22.07%, #FDBFA3 123.25%);
+
+        // Ensure that the color and background don't change on hover
+        &:hover {
+            color: @Purple;
+            background: linear-gradient(96.1deg, #FFEB80 -22.07%, #FDBFA3 123.25%);
+        }
+
+        i {
+            transition: transform 0.3s ease;
+        }
+
+        &:hover i {
+            transform: translateX(5px); /* Slight animation on hover */
+        }
+        }
+
+    }

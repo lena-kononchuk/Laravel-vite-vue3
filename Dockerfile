@@ -16,13 +16,15 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Устанавливаем расширения PHP
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install zip pdo pdo_mysql \
+    && docker-php-ext-install sodium
+
 # Устанавливаем Node.js и npm
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs
-
-# Устанавливаем расширения PHP
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo pdo_mysql sodium
 
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -49,5 +51,5 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
 
-# Запускаем приложение через PHP-FPM и Nginx
-CMD php-fpm -D && nginx -g 'daemon off;'
+# Запускаем приложение через PHP-FPM
+CMD ["php-fpm"]

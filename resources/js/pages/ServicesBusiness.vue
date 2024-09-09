@@ -2,6 +2,7 @@
     <section-hero bg="/img/hero/business.jpg" style="height: 500;">
         <template #title>Business Relocation</template>
     </section-hero>
+
     <section-image-text img="/img/services-page/bussines-friendly.jpg">
         <template #title>Business-Friendly Environment
         </template>
@@ -14,6 +15,7 @@
                 individual. This business-friendly environment is the result of effective business initiatives taken by
                 the government which focus on providing a variety of benefits to people moving from abroad. Among the
                 multitude of reasons why Cyprus is the ideal place to relocate your business are the following:
+
             </div>
             <div>
                 <ul>
