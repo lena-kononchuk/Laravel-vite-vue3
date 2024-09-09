@@ -2,28 +2,37 @@
     <div class="section section__purple" style="overflow: hidden;">
         <div class="wrapper">
             <div class="box3x h2 center-xs white uppercase">Frequently Asked Questions</div>
-            <!-- Swiper component for displaying slides -->
             <swiper :slidesPerView="3" :spaceBetween="30"
                 :pagination="{ clickable: true, el: '.swiper-pagination-custom' }" :modules="modules"
                 class="swiperFaq box2x swiper__horizontal relative" :breakpoints="breakpoints">
                 <swiper-slide v-for="(slide, index) in slides" :key="index"
                     class="card card__image relative flex-vertical" :style="{ minHeight: '500px' }">
                     <div class="image image--middle" style="background-image: url('/img/slider_image.jpg');"></div>
-                    <!-- Replace with image tag -->
                     <div class="card card__text box" style="box-shadow:none">
-                        <button class="button button--purple swiper__button box center-xs">{{ slide.button }}</button>
-
+                        <button class="button button--purple swiper__button box center-xs">
+                            {{ slide.button }}
+                        </button>
                         <div class="h4 purple box">{{ slide.question }}</div>
-                        <div class="text">{{ slide.answer }}</div>
-                    </div>
+
+                        <div class="text box">
+                            <!-- Display either truncated or full text based on isExpanded -->
+                            {{ slide.isExpanded || slide.answer.length <= 240 ? slide.answer : slide.answer.slice(0,
+                240) + '...' }} </div>
+
+                                <!-- Only show the button if the answer is longer than 240 characters -->
+                                <button v-if="slide.answer.length > 240" @click="toggleText(index)"
+                                    class="button button--expand  box center-xs">
+                                    {{ slide.isExpanded ? 'Read less' : 'Expand' }}
+                                    <i :class="{ 'fa-arrow-right': !slide.isExpanded }" class="fa"></i>
+                                </button>
+
+                        </div>
                 </swiper-slide>
             </swiper>
-            <!-- Custom pagination element -->
             <div class="center-xs swiper-pagination-custom"></div>
         </div>
     </div>
 </template>
-
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
@@ -43,11 +52,17 @@ onMounted(async () => {
             question: faq.question,
             answer: faq.answer,
             button: faq.button,
+            isExpanded: false, // Add state to manage text expansion
         }));
     } catch (error) {
         console.error('Failed to fetch FAQs:', error);
     }
 });
+
+// Function to toggle the isExpanded state
+const toggleText = (index) => {
+    slides.value[index].isExpanded = !slides.value[index].isExpanded;
+};
 
 // Responsive breakpoints for Swiper
 const breakpoints = {
