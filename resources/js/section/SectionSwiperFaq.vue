@@ -1,8 +1,9 @@
 <template>
-    <div class="section section__purple" style="overflow: hidden;">
+    <div ref="faqSection" class="section section__purple" style="overflow: hidden;">
         <div class="wrapper">
             <div class="box3x h2 center-xs white uppercase">Frequently Asked Questions</div>
-            <swiper :slidesPerView="3" :spaceBetween="30"
+            <!-- Swiper component to be loaded only after scrolling into view -->
+            <swiper v-if="isVisible" :slidesPerView="3" :spaceBetween="30"
                 :pagination="{ clickable: true, el: '.swiper-pagination-custom' }" :modules="modules"
                 class="swiperFaq box2x swiper__horizontal relative" :breakpoints="breakpoints">
                 <swiper-slide v-for="(slide, index) in slides" :key="index"
@@ -14,58 +15,81 @@
                             {{ slide.button }}
                         </button>
                         <div class="h4 purple box">{{ slide.question }}</div>
-
                         <div class="text box">
-                            <!-- Display either truncated or full text based on isExpanded -->
+                            <!-- Display text based on isExpanded state -->
                             {{ slide.isExpanded || slide.answer.length <= 240 ? slide.answer : slide.answer.slice(0,
                 240) + '...' }} </div>
-
-                                <!-- Only show the button if the answer is longer than 240 characters -->
+                                <!-- Button to toggle text expansion -->
                                 <button v-if="slide.answer.length > 240" @click="toggleText(index)"
-                                    class="button button--expand  box center-xs">
+                                    class="button button--expand box center-xs">
                                     {{ slide.isExpanded ? 'Read less' : 'Expand' }}
                                     <i :class="{ 'fa-arrow-right': !slide.isExpanded }" class="fa"></i>
                                 </button>
-
                         </div>
                 </swiper-slide>
             </swiper>
-            <div class="center-xs swiper-pagination-custom"></div>
+            <div v-if="isVisible" class="center-xs swiper-pagination-custom"></div>
         </div>
     </div>
 </template>
+
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
-
-// Import required modules
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { Pagination } from 'swiper/modules';
 
-const slides = ref([]);
+// States
+const slides = ref([]); // Array to store FAQ data
+const isVisible = ref(false); // Tracker for element visibility
+const observer = ref(null); // IntersectionObserver instance
+const faqSection = ref(null); // Reference to the FAQ section
 
-// Fetch FAQs from backend on component mount
-onMounted(async () => {
+// Function to load FAQ data
+const loadFAQs = async () => {
     try {
         const response = await axios.get('/api/faqs');
         slides.value = response.data.data.map(faq => ({
             question: faq.question,
             answer: faq.answer,
             button: faq.button,
-            isExpanded: false, // Add state to manage text expansion
+            isExpanded: false, // State to manage text expansion
         }));
     } catch (error) {
         console.error('Failed to fetch FAQs:', error);
     }
+};
+
+// Function to handle scroll visibility using IntersectionObserver
+const observeVisibility = (entries) => {
+    if (entries[0].isIntersecting) {
+        isVisible.value = true;
+        loadFAQs(); // Load data when element is in the viewport
+        observer.value.disconnect(); // Stop observing after loading
+    }
+};
+
+// Setup observer
+onMounted(() => {
+    observer.value = new IntersectionObserver(observeVisibility);
+    if (faqSection.value) {
+        observer.value.observe(faqSection.value); // Start observing the element
+    }
 });
 
-// Function to toggle the isExpanded state
+onBeforeUnmount(() => {
+    if (observer.value && faqSection.value) {
+        observer.value.unobserve(faqSection.value); // Stop observing when component is destroyed
+    }
+});
+
+// Function to toggle text state (expand/collapse)
 const toggleText = (index) => {
     slides.value[index].isExpanded = !slides.value[index].isExpanded;
 };
 
-// Responsive breakpoints for Swiper
+// Swiper parameters
 const breakpoints = {
     320: {
         slidesPerView: 1,
@@ -85,6 +109,5 @@ const breakpoints = {
     },
 };
 
-// Swiper modules to use
-const modules = [Pagination];
+const modules = [Pagination]; // Swiper modules
 </script>
