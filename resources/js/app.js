@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+import 'lazysizes/plugins/bgset/ls.bgset';
+
 import { defineAsyncComponent } from 'vue';
 
 
@@ -69,6 +71,23 @@ const router = createRouter({
         });
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const lazyBackgrounds = document.querySelectorAll('.lazyload[data-bg]');
+
+    lazyBackgrounds.forEach((el) => {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                const element = entries[0].target;
+                const bgImage = element.getAttribute('data-bg');
+                element.style.backgroundImage = `url(${bgImage})`;
+                observer.disconnect(); // Отключаем observer после загрузки
+            }
+        });
+
+        observer.observe(el);
+    });
+});
+
 
 
 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

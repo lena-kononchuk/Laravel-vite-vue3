@@ -87,7 +87,6 @@
                                     automate immigration
                                     complexity and enable informed relocation decisions at lower cost.</div>
                                 <router-link to="/enquiry" class="button button--yellow">Contact</router-link>
-
                             </div>
                         </div>
                     </div>

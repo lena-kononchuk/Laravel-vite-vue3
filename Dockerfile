@@ -16,6 +16,22 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+    RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    libonig-dev \
+    libxml2-dev \
+    unzip \
+    git \
+    zlib1g-dev \
+    libicu-dev \
+    curl \
+    libsodium-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+
 # Устанавливаем расширения PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
@@ -53,3 +69,4 @@ RUN chmod -R 755 /var/www
 
 # Запускаем приложение через PHP-FPM
 CMD ["php-fpm"]
+

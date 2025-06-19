@@ -9,7 +9,7 @@
                 class="swiper swiper__horizontal" @slideChange="onSlideChange" style=" overflow: hidden;">
                 <swiper-slide v-for="(slide, index) in slides" :key="index" class="slide">
                     <!-- Slide Content -->
-                    <div class="flex wrap" style="margin-bottom: 30px;">
+                    <div class="flex wrap">
                         <router-link to="/services-investments"
                             class="button button--purple-light">Investments</router-link>
                         <router-link to="/services-business" class="button button--purple-light">Business
@@ -17,7 +17,7 @@
                         <router-link to="/services-family" class="button button--purple-light">Family
                             Relocation</router-link>
                     </div>
-                    <div class="box3x">
+                    <div>
                         <div :class="{ 'h1': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
                             class="box--small">{{ slide.title }}</div>
                         <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
@@ -37,7 +37,7 @@
                 <swiper-slide v-for="(slide, index) in slides" :key="index" class="slide flex  flex-vertical center-xs"
                     style="display:flex !important">
                     <!-- Slide Content -->
-                    <div class="flex wrap start-sm " style="margin-bottom: 30px;">
+                    <div class="flex wrap start-sm ">
                         <router-link to="/services-investments"
                             class="button button--purple-light">Investments</router-link>
                         <router-link to="/services-business" class="button button--purple-light">Business
@@ -46,19 +46,19 @@
                             Relocation</router-link>
                     </div>
 
-                    <div class="center-xxs start-xs box2x">
+                    <div class="center-xxs start-xs">
                         <div :class="{ 'h1': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
                             class="box--small">{{ slide.title }}</div>
                         <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
                             class="box">{{ slide.subtitle_small }}</div>
                         <div :class="{ 'text': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
                             class="box " style="max-width: 420px">{{ slide.text }}</div>
-                        <router-link :to="slide.buttonLink" class="button button--primary box3x">{{ slide.buttonText
+                        <router-link :to="slide.buttonLink" class="button button--primary box">{{ slide.buttonText
                             }}</router-link>
                     </div>
                     <!-- Images for Index 0 on Desktop -->
                     <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                        class="box center-xxs start-xs ">{{ slide.subtitle }}</div>
+                        class="center-xxs start-xs ">{{ slide.subtitle }}</div>
 
                     <div v-if="index === 0" class="flex ">
                         <div v-for="(image, imgIndex) in slide.images" :key="imgIndex" class="card"

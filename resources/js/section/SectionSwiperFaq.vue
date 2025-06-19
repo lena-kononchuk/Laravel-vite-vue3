@@ -56,6 +56,7 @@ const loadFAQs = async () => {
             button: faq.button,
             isExpanded: false, // State to manage text expansion
         }));
+        console.log('fetch FAQs:',         slides);
     } catch (error) {
         console.error('Failed to fetch FAQs:', error);
     }
