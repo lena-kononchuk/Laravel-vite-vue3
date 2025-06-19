@@ -67,10 +67,10 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
 
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache \
-    && php artisan migrate --force
+RUN if [ -f .env ]; then echo ".env found"; else echo "APP_KEY=placeholder" > .env; fi \
+    && php artisan config:clear \
+    && php artisan config:cache || true
+
 # Запускаем приложение через PHP-FPM
 CMD ["php-fpm"]
 
