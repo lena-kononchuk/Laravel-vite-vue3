@@ -40,4 +40,4 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 COPY supervisord.conf /etc/supervisord.conf
 
 # Start Laravel only
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["tail", "-f", "storage/logs/laravel.log"]
