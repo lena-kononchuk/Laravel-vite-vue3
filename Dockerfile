@@ -38,7 +38,10 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 COPY ./supervisord.conf /etc/supervisord.conf
 
 # Expose web port
-EXPOSE 80
+
+
+
+EXPOSE 8080
 
 # Start nginx + php-fpm via supervisor
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
