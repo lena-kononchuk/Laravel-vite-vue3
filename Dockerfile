@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     curl \
     libsodium-dev \
+    supervisor \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
@@ -42,20 +43,23 @@ RUN composer install --no-dev --no-scripts --no-autoloader
 # Install Node.js dependencies
 RUN npm install
 
-# Build frontend assets with Vite
-RUN npm run build
+# Build frontend assets with Vite (optional if using dev mode only)
+# RUN npm run build
 
 # Copy custom php.ini
 COPY ./php.ini /usr/local/etc/php/php.ini
+
+# Copy Supervisor config
+COPY supervisord.conf /etc/supervisord.conf
 
 # Set file ownership and permissions
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
 
-# Generate .env if missing and cache config
+# Prepare Laravel
 RUN if [ -f .env ]; then echo ".env found"; else echo "APP_KEY=placeholder" > .env; fi \
     && php artisan config:clear \
     && php artisan config:cache || true
 
-# Start Laravel application using built-in server
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Start both Laravel and Vite dev server via Supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
