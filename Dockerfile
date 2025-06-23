@@ -31,7 +31,7 @@ RUN php artisan config:clear \
     && php artisan view:cache
 
 # Permissions
-RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
+RUN chown -R www-data:www-data storage bootstrap/cache && chmod -R 775 storage bootstrap/cache
 
 # php.ini
 COPY ./php.ini /usr/local/etc/php/php.ini
@@ -40,4 +40,6 @@ COPY ./php.ini /usr/local/etc/php/php.ini
 COPY supervisord.conf /etc/supervisord.conf
 
 # Start Laravel only
-CMD ["tail", "-f", "storage/logs/laravel.log"]
+
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
