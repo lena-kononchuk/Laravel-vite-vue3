@@ -50,3 +50,12 @@ docker-compose.override.yml
 
 # Windows
 Thumbs.db
+
+
+storage/*
+!storage/.gitkeep
+
+public/storage
+node_modules/
+.idea/
+*.log

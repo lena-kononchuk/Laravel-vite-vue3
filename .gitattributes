@@ -9,3 +9,12 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+app/** linguist-vendored
+bootstrap/** linguist-vendored
+config/** linguist-vendored
+database/** linguist-vendored
+storage/** linguist-vendored
+tests/** linguist-vendored
+public/mix-manifest.json linguist-generated
+resources/js/** linguist-vendored
+resources/css/** linguist-vendored
