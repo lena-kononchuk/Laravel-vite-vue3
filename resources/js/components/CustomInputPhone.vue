@@ -7,7 +7,7 @@
 
             <label for="phone" class="input__label"
                 :class="{ 'active': isActive || internalValue, 'label--error': !isPhoneValid && internalValue }">
-                {{ label }}
+                {{ label }}  *
             </label>
 
             <span v-if="internalValue && !isPhoneValid" class="input__error">

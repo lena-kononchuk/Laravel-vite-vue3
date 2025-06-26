@@ -19,7 +19,7 @@ class EnquiryController extends Controller
         $request->validate([
             'name' => 'required|string|max:191',
             'email' => 'required|string|max:191|email',
-            'message' => 'required|string|max:191',
+            'message' => 'nullable|string|max:1000',
             'phone' => 'nullable|string|max:191',
             'subject' => 'required|string|max:191',
         ]);
