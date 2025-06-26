@@ -52,6 +52,8 @@ body
 
 }
 
+
+
 .app {
     display: flex;
     flex-direction: column;
@@ -131,17 +133,17 @@ body
 .text .content {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8; /* Number of lines to show before truncation */
+    -webkit-line-clamp: 8;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 240px; /* Adjust this based on the line height and number of lines */
+    max-height: 240px;
     transition: max-height 0.3s ease-out;
 }
 
 .text .content.show-more {
     display: block;
-    -webkit-line-clamp: unset; /* Remove line clamp for expanded view */
-    max-height: none; /* Remove max-height restriction */
+    -webkit-line-clamp: unset;
+    max-height: none;
 }
 
 .lazyload {

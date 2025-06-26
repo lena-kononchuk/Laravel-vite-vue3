@@ -17,9 +17,10 @@
     // overflow: hidden;
 
     &__small {
-        aspect-ratio: (1100 / 330);
+        aspect-ratio: 2.05714286;
         background-position: right;
-        background-size: contain;
+        background-size: cover;
+        background-color: white;
 
         display: flex;
         flex-direction: column;
@@ -40,13 +41,12 @@
 
 &__overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 70%;
+    bottom: 0px;
+    left: 0px;
+    width: 49%;
     height: 100%;
     z-index: -1;
-
-    background: linear-gradient(90deg, #FFFFFF 62.06%, rgba(255, 255, 255, 0.77) 78.73%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(90deg, rgb(255, 255, 255) 46%, rgba(255, 255, 255, 0.77) 80%, rgba(255, 255, 255, 0) 99%);
 
 
     .sm({

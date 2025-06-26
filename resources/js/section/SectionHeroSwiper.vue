@@ -1,7 +1,11 @@
 <template>
-    <div class="section section__swiper hero relative"
-        :style="{ backgroundImage: `linear-gradient(100deg, rgb(183, 214, 239) 32%, rgba(183, 214, 239, 0.6) 49%, rgba(183, 214, 239, 0) 59%), url(${currentBackground})` }">
-        <div class="swiper__overlay"></div>
+  <div
+        class="section section__swiper hero relative"
+        ref="backgroundImage"
+        :style="{ backgroundImage: `url(${currentBackground})` }"
+  >
+    <!-- overlay should be here -->
+    <div class="swiper__overlay"></div>
         <div class="wrapper">
             <!-- Horizontal Swiper -->
             <swiper
@@ -55,13 +59,20 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect,  defineProps  } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination, Autoplay, Parallax } from 'swiper/modules';
+
+import { onMounted, onBeforeUnmount } from 'vue'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import 'swiper/css/parallax';
+
+
+const overlayGradient = 'radial-gradient(farthest-corner at left bottom, rgba(255,255,255,0.63) 5%, rgba(255,255,255,0) 60%)';
+
+
 
 const slides = [
     {
@@ -115,6 +126,7 @@ const slides = [
 const currentBackground = ref(slides[0].background);
 const currentSlideIndex = ref(0);
 const isVertical = ref(true);
+const backgroundImage = ref(null)
 
 const onSlideChange = (swiper) => {
     currentBackground.value = slides[swiper.activeIndex].background;
@@ -128,6 +140,28 @@ watchEffect(() => {
         isVertical.value = mq.matches;
     });
 });
+
+
+const handleScroll = () => {
+  const el = backgroundImage.value
+  if (!el) return
+
+  const scrollTop = window.scrollY
+  const offsetTop = el.offsetTop
+  const speed = 0.8
+
+  const translateY = (scrollTop - offsetTop) * speed
+  el.style.backgroundPosition = `center ${translateY}px`
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
 </script>
 
 <style scoped>
@@ -219,6 +253,13 @@ watchEffect(() => {
     z-index: 10;
     display: flex;
     gap: 10px;
+}
+.swiper__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(100deg, rgb(183, 214, 239) 32%, rgba(183, 214, 239, 0.6) 49%, rgba(183, 214, 239, 0) 59%);
 }
 
 </style>

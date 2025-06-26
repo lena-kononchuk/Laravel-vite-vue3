@@ -1,114 +1,136 @@
 <template>
     <div ref="faqSection" class="section section__purple" style="overflow: hidden;">
-        <div class="wrapper">
-            <div class="box3x h2 center-xs white uppercase">Frequently Asked Questions</div>
-            <!-- Swiper component to be loaded only after scrolling into view -->
-            <swiper v-if="isVisible" :slidesPerView="3" :spaceBetween="30"
-                :pagination="{ clickable: true, el: '.swiper-pagination-custom' }" :modules="modules"
-                class="swiperFaq box2x swiper__horizontal relative" :breakpoints="breakpoints">
-                <swiper-slide v-for="(slide, index) in slides" :key="index"
-                    class="card card__image relative flex-vertical" :style="{ minHeight: '500px' }">
-                    <div class="image image--middle lazyload" style="background-image: url('/img/slider_image.jpg');">
-                    </div>
-                    <div class="card card__text box" style="box-shadow:none">
-                        <button class="button button--purple swiper__button box center-xs">
-                            {{ slide.button }}
-                        </button>
-                        <div class="h4 purple box">{{ slide.question }}</div>
-                        <div class="text box">
-                            <!-- Display text based on isExpanded state -->
-                            {{ slide.isExpanded || slide.answer.length <= 240 ? slide.answer : slide.answer.slice(0,
-                240) + '...' }} </div>
-                                <!-- Button to toggle text expansion -->
-                                <button v-if="slide.answer.length > 240" @click="toggleText(index)"
-                                    class="button button--expand box center-xs">
-                                    {{ slide.isExpanded ? 'Read less' : 'Expand' }}
-                                    <i :class="{ 'fa-arrow-right': !slide.isExpanded }" class="fa"></i>
-                                </button>
-                        </div>
-                </swiper-slide>
-            </swiper>
-            <div v-if="isVisible" class="center-xs swiper-pagination-custom"></div>
-        </div>
+      <div class="wrapper">
+        <h2 class="box3x h2 center-xs white uppercase">Frequently Asked Questions</h2>
+        <!-- Swiper container -->
+        <swiper
+          v-if="isVisible"
+          :modules="modules"
+          :slides-per-view="3"
+          :space-between="30"
+          :pagination="{ clickable: true, el: '.faq-pagination' }"
+          class="wiperFaq box2x swiper__horizontal relative"
+          :breakpoints="breakpoints"
+        >
+          <!-- Swiper slides -->
+          <swiper-slide
+            v-for="(slide, index) in slides"
+            :key="index"
+            class="faq-card card card__image relative flex-vertical"
+          >
+            <div class="faq-image-container">
+              <div
+                class="image image--middle lazyload"
+                :style="{ backgroundImage: `url('${slide.image || '/img/slider_image.jpg'}')`,  }"
+              ></div>
+            </div>
+
+            <div class="faq-content card card__text box">
+              <button class="button button--purple swiper__button center-xs box">
+                {{ slide.button }}
+              </button>
+
+              <h3 class="faq-question h4 purple box">{{ slide.question }}</h3>
+
+              <div class="faq-answer text box">
+                {{ slide.answer }}
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper>
+
+        <div v-if="isVisible" class="faq-pagination"></div>
+      </div>
     </div>
-</template>
+  </template>
 
-<script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/swiper-bundle.css';
-import axios from 'axios';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { Pagination } from 'swiper/modules';
+  <script setup>
+  import { Swiper, SwiperSlide } from 'swiper/vue'
+  import { Pagination } from 'swiper/modules'
+  import 'swiper/css'
+  import 'swiper/css/pagination'
+  import { ref, onMounted, onBeforeUnmount } from 'vue'
+  import axios from 'axios'
 
-// States
-const slides = ref([]); // Array to store FAQ data
-const isVisible = ref(false); // Tracker for element visibility
-const observer = ref(null); // IntersectionObserver instance
-const faqSection = ref(null); // Reference to the FAQ section
+  // Data
+  const slides = ref([])
+  const isVisible = ref(false)
+  const observer = ref(null)
+  const faqSection = ref(null)
 
-// Function to load FAQ data
-const loadFAQs = async () => {
+  // Configuration
+  const breakpoints = {
+    320: { slidesPerView: 1, spaceBetween: 10 },
+    480: { slidesPerView: 2, spaceBetween: 15 },
+    768: { slidesPerView: 2, spaceBetween: 20 },
+    1024: { slidesPerView: 3, spaceBetween: 30 }
+  }
+
+  const modules = [Pagination]
+
+  // Methods
+  const loadFAQs = async () => {
     try {
-        const response = await axios.get('/api/faqs');
-        slides.value = response.data.data.map(faq => ({
-            question: faq.question,
-            answer: faq.answer,
-            button: faq.button,
-            isExpanded: false, // State to manage text expansion
-        }));
-        console.log('fetch FAQs:',         slides);
+      const response = await axios.get('/api/faqs')
+      slides.value = response.data.data.map(faq => ({
+        ...faq,
+        isExpanded: false
+      }))
     } catch (error) {
-        console.error('Failed to fetch FAQs:', error);
+      console.error('Failed to fetch FAQs:', error)
     }
-};
+  }
 
-// Function to handle scroll visibility using IntersectionObserver
-const observeVisibility = (entries) => {
+  const observeVisibility = (entries) => {
     if (entries[0].isIntersecting) {
-        isVisible.value = true;
-        loadFAQs(); // Load data when element is in the viewport
-        observer.value.disconnect(); // Stop observing after loading
+      isVisible.value = true
+      loadFAQs()
+      observer.value.disconnect()
     }
-};
+  }
 
-// Setup observer
-onMounted(() => {
-    observer.value = new IntersectionObserver(observeVisibility);
+
+  // Lifecycle hooks
+  onMounted(() => {
+    observer.value = new IntersectionObserver(observeVisibility, {
+      threshold: 0.1
+    })
+
     if (faqSection.value) {
-        observer.value.observe(faqSection.value); // Start observing the element
+      observer.value.observe(faqSection.value)
     }
-});
+  })
 
-onBeforeUnmount(() => {
-    if (observer.value && faqSection.value) {
-        observer.value.unobserve(faqSection.value); // Stop observing when component is destroyed
+  onBeforeUnmount(() => {
+    if (observer.value) {
+      observer.value.disconnect()
     }
-});
+  })
+  </script>
 
-// Function to toggle text state (expand/collapse)
-const toggleText = (index) => {
-    slides.value[index].isExpanded = !slides.value[index].isExpanded;
-};
+  <style scoped>
+  /* Main card container */
+  .faq-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 500px;
+    background: white;
+    border-radius: 19px;
+    overflow: hidden;
+    margin-top: 30px;
+  }
 
-// Swiper parameters
-const breakpoints = {
-    320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-    },
-    480: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-    },
-    768: {
-        slidesPerView: 2,
-        spaceBetween: 30,
-    },
-    1024: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-    },
-};
+  /* Content area - flex column layout */
+  .faq-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 
-const modules = [Pagination]; // Swiper modules
-</script>
+  /* Ensure swiper slides have consistent height */
+  .swiper-slide {
+    height: auto;
+    display: flex;
+  }
+  </style>
