@@ -18,3 +18,18 @@ tests/** linguist-vendored
 public/mix-manifest.json linguist-generated
 resources/js/** linguist-vendored
 resources/css/** linguist-vendored
+
+
+app/** linguist-vendored
+bootstrap/** linguist-vendored
+config/** linguist-vendored
+database/** linguist-vendored
+public/** linguist-vendored
+storage/** linguist-vendored
+tests/** linguist-vendored
+resources/** linguist-vendored
+routes/** linguist-vendored
+
+*.lock linguist-generated
+*.log linguist-generated
+*.json linguist-generated
