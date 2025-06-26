@@ -3,86 +3,65 @@
         :style="{ backgroundImage: `linear-gradient(100deg, rgb(183, 214, 239) 32%, rgba(183, 214, 239, 0.6) 49%, rgba(183, 214, 239, 0) 59%), url(${currentBackground})` }">
         <div class="swiper__overlay"></div>
         <div class="wrapper">
-            <!-- Swiper with horizontal direction -->
-            <swiper v-if="isVertical" :modules="[Pagination]"
-                :pagination="{ clickable: true, el: '.swiper-pagination' }" direction="horizontal"
-                class="swiper swiper__horizontal" @slideChange="onSlideChange" style=" overflow: hidden;">
+            <!-- Horizontal Swiper -->
+            <swiper
+                :modules="[Pagination, Autoplay, Parallax]"
+                :pagination="{ clickable: true, el: '.swiper-pagination' }"
+                :autoplay="{ delay: 5000, disableOnInteraction: false }"
+                :parallax="true"
+                direction="horizontal"
+                class="swiper swiper__horizontal"
+                @slideChange="onSlideChange">
+
                 <swiper-slide v-for="(slide, index) in slides" :key="index" class="slide">
-                    <!-- Slide Content -->
-                    <div class="flex wrap">
-                        <router-link to="/services-investments"
-                            class="button button--purple-light">Investments</router-link>
-                        <router-link to="/services-business" class="button button--purple-light">Business
-                            Relocation</router-link>
-                        <router-link to="/services-family" class="button button--purple-light">Family
-                            Relocation</router-link>
-                    </div>
-                    <div>
-                        <div :class="{ 'h1': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                            class="box--small">{{ slide.title }}</div>
-                        <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                            class="box">{{ slide.subtitle_small }}</div>
-                        <div :class="{ 'text': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                            class="box " style="max-width: 400px">{{ slide.text }}</div>
-                        <router-link :to="slide.buttonLink" class="button button--primary box3x">{{ slide.buttonText
-                            }}</router-link>
-                    </div>
-                </swiper-slide>
-            </swiper>
+                    <div class="slide__parallax " data-swiper-parallax="30%">
+                        <div class="flex wrap slide__buttons box2x">
+                            <router-link to="/services-investments" class="button button--purple-light">Investments</router-link>
+                            <router-link to="/services-business" class="button button--purple-light">Business Relocation</router-link>
+                            <router-link to="/services-family" class="button button--purple-light">Family Relocation</router-link>
+                        </div>
 
-            <!-- Swiper with vertical direction -->
-            <swiper v-else :modules="[Pagination]" :pagination="{ clickable: true, el: '.swiper-pagination' }"
-                direction="vertical" class="swiper swiper__vertical" @slideChange="onSlideChange"
-                style="height: 720px; overflow: hidden;">
-                <swiper-slide v-for="(slide, index) in slides" :key="index" class="slide flex  flex-vertical center-xs"
-                    style="display:flex !important">
-                    <!-- Slide Content -->
-                    <div class="flex wrap start-sm ">
-                        <router-link to="/services-investments"
-                            class="button button--purple-light">Investments</router-link>
-                        <router-link to="/services-business" class="button button--purple-light">Business
-                            Relocation</router-link>
-                        <router-link to="/services-family" class="button button--purple-light">Family
-                            Relocation</router-link>
+                        <div class="slide__content">
+                            <div class="box2x">
+                            <div :class="{ 'h1': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5, 'slide__title': true }"
+                                class="box--small" data-swiper-parallax="-100">{{ slide.title }}</div>
+
+                            <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5, 'slide__subtitle': true }"
+                                class="box" data-swiper-parallax="-200" v-if="slide.subtitle_small">{{ slide.subtitle_small }}</div>
+
+                            <div :class="{ 'text': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5, 'slide__text': true }"
+                                class="box" style="max-width: 400px" data-swiper-parallax="-300">{{ slide.text }}</div>
+                            </div>
+                            <router-link :to="slide.buttonLink" class="button button--yellow box3x slide__button" data-swiper-parallax="-400">
+                                {{ slide.buttonText }}
+                            </router-link>
+                        </div>
                     </div>
 
-                    <div class="center-xxs start-xs">
-                        <div :class="{ 'h1': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                            class="box--small">{{ slide.title }}</div>
-                        <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                            class="box">{{ slide.subtitle_small }}</div>
-                        <div :class="{ 'text': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                            class="box " style="max-width: 420px">{{ slide.text }}</div>
-                        <router-link :to="slide.buttonLink" class="button button--primary box">{{ slide.buttonText
-                            }}</router-link>
-                    </div>
                     <!-- Images for Index 0 on Desktop -->
-                    <div :class="{ 'h4': true, 'white': index === 0 || index === 3 || index === 5, 'grey-blue': index !== 0 && index !== 3 && index !== 5 }"
-                        class="center-xxs start-xs ">{{ slide.subtitle }}</div>
-
-                    <div v-if="index === 0" class="flex ">
-                        <div v-for="(image, imgIndex) in slide.images" :key="imgIndex" class="card"
-                            style="padding: 10px;">
+                    <div v-if="index === 0" class="flex slide__cities">
+                        <div v-for="(image, imgIndex) in slide.images" :key="imgIndex" class="card slide__city-card">
                             <img :src="image" :alt="`Image of ${slide.cityNames[imgIndex]}`"
-                                class="image image--small box--small lazyload" />
-                            <div class="text">{{ slide.cityNames[imgIndex] }}</div>
+                                class="image image--small box--small lazyload slide__city-image" />
+                            <div class="text slide__city-name">{{ slide.cityNames[imgIndex] }}</div>
                         </div>
                     </div>
                 </swiper-slide>
             </swiper>
 
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination hero__pagination"></div>
         </div>
     </div>
 </template>
 
-
 <script setup>
 import { ref, watchEffect } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination, Autoplay, Parallax } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import 'swiper/css/autoplay';
+import 'swiper/css/parallax';
 
 const slides = [
     {
@@ -92,9 +71,6 @@ const slides = [
         text: 'The captivating Mediterranean island of Cyprus has become a business haven with a flourishing expat community. The strategic location that grants networking opportunities and the stability of being in the EU offers entrepreneurs the abilities they need to thrive.',
         buttonLink: '/immigration',
         buttonText: 'Find Out More',
-        subtitle: 'Most popular cities',
-        images: ['/img/hero/cities_slider1.png', '/img/hero/cities_slider2.png', '/img/hero/cities_slider3.png', '/img/hero/cities_slider4.png'],
-        cityNames: ['Nicosia', 'Limassol', 'Larnaca', 'Paphos']
     },
     {
         background: '/img/hero/hero-invest.jpg',
@@ -138,35 +114,111 @@ const slides = [
 
 const currentBackground = ref(slides[0].background);
 const currentSlideIndex = ref(0);
-const isVertical = ref(true); // Default to vertical
+const isVertical = ref(true);
 
 const onSlideChange = (swiper) => {
-    console.log('Current Slide:', slides[swiper.activeIndex]);
     currentBackground.value = slides[swiper.activeIndex].background;
     currentSlideIndex.value = swiper.activeIndex;
 };
 
-// Watch for window resize to toggle swiper direction
 watchEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 61.99em)');
-    isVertical.value = mediaQuery.matches; // Update isVertical based on screen width
+    isVertical.value = mediaQuery.matches;
     mediaQuery.addListener((mq) => {
-        isVertical.value = mq.matches; // Update on resize
+        isVertical.value = mq.matches;
     });
 });
-
-// Expose variables/functions using defineExpose
-import { defineExpose } from 'vue';
-
-const exposeVariables = () => {
-    return {
-        slides,
-        currentBackground,
-        currentSlideIndex,
-        onSlideChange,
-        isVertical,
-    };
-};
-
-defineExpose(exposeVariables());
 </script>
+
+<style scoped>
+
+.section__swiper {
+    transition: background-image 0.8s ease;
+}
+
+.slide__parallax {
+    /* padding: 2rem; */
+}
+
+.slide__buttons {
+    margin-bottom: 2rem;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all 0.6s ease 0.2s;
+}
+
+.slide__content {
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.slide__title {
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.slide__subtitle {
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: all 0.8s ease 0.2s;
+}
+
+.slide__text {
+    white-space: normal;
+  word-wrap: break-word;
+  max-width: 100%;
+  transform: translateX(-50px);
+  opacity: 0;
+  transition: all 0.8s ease 0.4s;
+}
+
+.slide__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateX(-50px);
+    opacity: 0;
+}
+
+
+.swiper-slide-active .slide__buttons,
+.swiper-slide-active .slide__content,
+.swiper-slide-active .slide__title,
+.swiper-slide-active .slide__subtitle,
+.swiper-slide-active .slide__text,
+.swiper-slide-active .slide__button,
+.swiper-slide-active .slide__cities {
+    transform: translate(0);
+    opacity: 1;
+}
+
+.hero__pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.hero__pagination .swiper-pagination-bullet {
+    width: 40px;
+    height: 3px;
+    border-radius: 0;
+    background: rgba(255,255,255,0.5);
+    opacity: 1;
+}
+
+.hero__pagination .swiper-pagination-bullet-active {
+    background: #F7970E;
+}
+
+.hero__navigation {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+</style>

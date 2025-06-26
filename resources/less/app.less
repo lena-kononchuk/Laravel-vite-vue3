@@ -20,39 +20,24 @@
 body,
 html
 {
-    padding: 0;
-    margin: 0;
-    background-color: #fff; /* Replace with @White */
-    min-width: 320px;
-    overflow-x: hidden;
     height: 100%;
-
 }
 
-body,
-html {
-    padding: 0;
-    margin: 0;
-    background-color: #fff; /* Replace with your variable */
-    min-width: 320px;
-    overflow-x: hidden;
-    height: 100%; /* Full height for body and html */
-}
 
 .app {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh;
 }
 
 .fullscreen {
-    flex: 1; /* Take up all available space */
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 .scrollbar-container {
-    flex: 1; /* Ensure this container fills the available space */
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
@@ -63,7 +48,28 @@ body
     font-weight: 400;
     color: @DarkBlue;
     font-size: @BaseFontSize;
+    min-width: 320px;
+
 }
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .fullscreen.scrollbar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  router-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
 .background
 {
@@ -94,8 +100,8 @@ body
     flex-grow: 0;
     flex-shrink: 0;
 
-    width: 180px;
-    height: 66px;
+    width: 100px;
+    height: 60px;
 
     background-repeat: no-repeat;
     background-position: left center;
@@ -147,6 +153,12 @@ body
       background-size: cover;
       background-position: center;
       border-radius: 10px;
+
+      &__avatar{
+        height: 180px;
+        background-size: contain;
+
+      }
     }
 @import "blocks/section";
 @import "blocks/wrapper";

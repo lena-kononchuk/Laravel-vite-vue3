@@ -31,7 +31,7 @@
                             a safe place to settle. With extremely low crime rate, stunning sandy beaches, and
                             awe-inspiring
                             mountain views, Cyprus is the place to be!</div>
-                        <router-link to="/immigration" class="button button--primary">Find Out More</router-link>
+                        <router-link to="/immigration" class="button button--yellow">Find Out More</router-link>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 overflow">
@@ -55,39 +55,39 @@
         <section class="section section__purple">
             <div class="wrapper">
                 <div class="row" style="justify-content: space-between;">
-                    <div class="col-xs-12 col-sm-12 col-md-6 white" style="width: 440px;">
-                        <div class="h2 box uppercase">Who We Are</div>
-                        <div class="text box">Have you ever dreamed about the perfect place to live? Your
+                    <div class="col-xs-12 col-sm-7 col-md-7 white flex-vertical center-xs start-xs">
+                        <div class="h2 box uppercase start-xs">Who We Are</div>
+                        <div class="text box start-xs">Have you ever dreamed about the perfect place to live? Your
                             definition
                             of
                             PAM Consulting is built upon a team of motivated professionals aiming to provide
                             families
                             and businesses the services they need to relocate to the island of Cyprus.
                         </div>
-                        <div class="text box3x">If you’ve made the decision to relocate to Cyprus, then you are
+                        <div class="text box3x start-xs">If you’ve made the decision to relocate to Cyprus, then you are
                             expecting
                             to
                             find
                             a safe place to settle. With extremely low crime rate, stunning sandy beaches, and
                             awe-inspiring
                             mountain views, Cyprus is the place to be!</div>
-                        <router-link to="/about" class="button button--yellow">More about us</router-link>
+                            <div class="start-xs"><router-link to="/about" class="button button--yellow">More about us</router-link></div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="col-xs-12 col-sm-4 col-md-4 center-xs">
                         <div class="row card card--grey">
-                            <div class="col-xs-12 col-sm-6">
-                                <div class="background lazyload"
-                                    style="background-image: url('/img/team/founder.jpg'); border-radius:10px;">
+                            <div class="col-xs-12 col-sm-12 center-xs">
+                                <div class="background background__avatar lazyload box--small"
+                                    style="background-image: url('/img/team/founder.jpg'); ">
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 center-xs">
                                 <div class="h4 box purple">FOUNDER</div>
-                                <div class="text box--small ">Anastasia Papaharidemou</div>
+                                <div class="text box--small purple">Anastasia Papaharidemou</div>
                                 <div class="text box2x">Founder and CEO, helps streamline and
                                     automate immigration
                                     complexity and enable informed relocation decisions at lower cost.</div>
-                                <router-link to="/enquiry" class="button button--yellow">Contact</router-link>
+                                    <div class="center-xs"> <router-link to="/enquiry" class="button button--yellow button--full">Contact</router-link></div>
+
                             </div>
+
                         </div>
                     </div>
                 </div>

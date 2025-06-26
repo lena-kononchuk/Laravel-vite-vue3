@@ -1,11 +1,20 @@
 .hero {
-    aspect-ratio: (1440 / 350);
-
-    background-position: top center;
+    aspect-ratio: 2.05714286;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     box-sizing: border-box;
+    background-color: #bdbdbd40;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 750px;
+    width: 100%;
     z-index: 1;
+    // overflow: hidden;
 
     &__small {
         aspect-ratio: (1100 / 330);
@@ -52,3 +61,7 @@
 }
 
 }
+.section__swiper.hero {
+    z-index: 5;
+    position: relative;
+  }

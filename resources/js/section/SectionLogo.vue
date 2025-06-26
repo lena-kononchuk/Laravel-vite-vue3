@@ -1,116 +1,145 @@
 <template>
     <div class="section">
-        <div class="box3x center-xs">
+        <div class="box center-xs">
             <div class="h2 box uppercase">
                 Our Partners
             </div>
         </div>
         <div class="center-xs">
-            <swiper :spaceBetween="60" :modules="modules" :loop="true" :autoplay="{ delay: 1000 }"
-                :breakpoints="breakpoints" ref="swiper" class="mySwiper">
-                <swiper-slide v-for="(image, index) in partnerImages" :key="index">
-                    <img :src="image" :alt="'Partner Image ' + (index + 1)" class="logo lazyload">
-                </swiper-slide>
-            </swiper>
+            <!-- Main container with hidden overflow to create carousel effect -->
+            <div class="logos-container" ref="container">
+                <!-- Track that will be animated horizontally -->
+                <div class="logos-track" ref="track">
+                <!-- Loop through extendedLogos array to render logo images -->
+                <img
+                    v-for="(logo, index) in extendedLogos"
+                    :key="index"
+                    :src="logo"
+                    :alt="`Partner ${index % logos.length + 1}`"
+                    class="logo cursor"
+                />
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
-// Import Swiper styles
-import 'swiper/swiper-bundle.css';
+import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
 
-// Import GSAP and ScrollTrigger
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Import required modules
-import { Autoplay } from 'swiper/modules';
-import { ref, onMounted } from 'vue';
+// Array of logo image paths
+const logos = [
+  '/img/partners/partner1.png',
+  '/img/partners/partner2.png',
+  '/img/partners/partner3.png',
+  '/img/partners/partner4.png',
+  '/img/partners/partner5.png',
+  '/img/partners/partner6.png'
+]
 
-// Define the array of partner images
-const partnerImages = [
-    "/img/partners/partner1.png",
-    "/img/partners/partner2.png",
-    "/img/partners/partner3.png",
-    "/img/partners/partner4.png",
-    "/img/partners/partner5.png",
-    "/img/partners/partner6.png",
-];
+// Create extended array with 3 copies of logos for seamless looping
+const extendedLogos = [...logos, ...logos, ...logos]
 
-// Define Swiper modules
-const modules = [Autoplay];
+// Template refs
+const container = ref(null)
+const track = ref(null)
+const animation = ref(null)
+const itemWidth = ref(0)
+const gap = ref(40)
 
-// Define responsive breakpoints for Swiper
-const breakpoints = {
-    320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-        centeredSlides: true
-    },
-    480: {
-        slidesPerView: 2,
-    },
-    640: {
-        slidesPerView: 3,
-    },
-    768: {
-        slidesPerView: 4,
+// Initialize carousel animation
+const initCarousel = async () => {
+  // Get all logo images from DOM
+  const images = Array.from(track.value.querySelectorAll('img'))
+
+  // Wait for all images to load (resolve immediately if already loaded)
+  await Promise.all(images.map(img =>
+    img.complete ? Promise.resolve() : new Promise(resolve => {
+      img.onload = resolve
+    })
+  ))
+
+  // Calculate width of first logo if available
+  if (images.length > 0) {
+    itemWidth.value = images[0].offsetWidth
+  }
+
+  // Calculate width of one complete set of logos (original array)
+  const singleSetWidth = (itemWidth.value + gap.value) * logos.length
+
+  // Create GSAP animation
+  animation.value = gsap.to(track.value, {
+    x: -singleSetWidth,
+    duration: singleSetWidth / 50,
+    ease: 'none',
+    repeat: -1,
+    onRepeat: () => {
+      // Reset position at the end of each loop for seamless transition
+      gsap.set(track.value, { x: 0 })
     }
-};
-
-// Reference to Swiper instance
-const swiperRef = ref(null);
-
-// Check if GSAP is defined
-if (typeof gsap !== 'undefined') {
-    // Register ScrollTrigger plugin with GSAP
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Function to initialize animations
-    function initAnimations() {
-        // Select the Swiper wrapper
-        const landingLogos = document.querySelector('.mySwiper .swiper-wrapper');
-
-        // Check if landingLogos exists before proceeding
-        if (!landingLogos) {
-            console.error('Swiper wrapper not found.');
-            return;
-        }
-
-        // Clone the Swiper wrapper and append it
-        const clone = landingLogos.cloneNode(true);
-        landingLogos.appendChild(clone);
-
-        // Calculate the total width of the logos
-        const logoSetWidth = landingLogos.scrollWidth;
-
-        // Fade in the logos
-        gsap.fromTo(landingLogos, { opacity: 0 }, { opacity: 1, duration: 0.5, delay: 0.5 });
-
-        // Create a timeline for looping the animation
-        const timeline = gsap.timeline({
-            repeat: -1,
-            ease: 'none',
-            yoyo: true,
-        });
-
-        // Animate the movement of the logo wrapper
-        timeline.to(landingLogos, {
-            x: -logoSetWidth,
-            duration: 90,
-            ease: 'none',
-        });
-    }
-
-    // Initialize animations after the component is mounted
-    onMounted(() => {
-        initAnimations();
-    });
-} else {
-    // Log an error message if GSAP is not found
-    console.error('GSAP is not defined!');
+  })
 }
+
+// Handle window resize - restart animation with new dimensions
+const handleResize = () => {
+  if (animation.value) {
+    animation.value.kill()
+    initCarousel()
+  }
+}
+
+// Component lifecycle hooks
+onMounted(() => {
+  initCarousel()
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  if (animation.value) animation.value.kill()
+  window.removeEventListener('resize', handleResize)
+})
 </script>
+
+<style scoped>
+/* Container with hidden overflow to create carousel effect */
+.logos-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 30px 0;
+  position: relative;
+}
+
+/* Track that holds all logos and will be animated */
+.logos-track {
+  display: flex;
+  will-change: transform;
+  gap: v-bind(gap + 'px');
+}
+
+/* Individual logo styling */
+.logo {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 60px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo {
+    width: 80px;
+  }
+}
+</style>

@@ -21,8 +21,8 @@
         <section-header></section-header>
         <div class="fullscreen scrollbar-container" data-scroll-container>
             <router-view></router-view>
-            <section-footer></section-footer>
         </div>
+        <section-footer></section-footer>
     </div>
 <script>
     // window.endpoints = @json([
