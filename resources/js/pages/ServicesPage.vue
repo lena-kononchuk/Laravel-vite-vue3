@@ -2,7 +2,7 @@
     <section-services :items="services">
         <template #title>Our Services</template>
         <template #button>
-            <router-link class="button button--primary" to="#">
+            <router-link class="button button--primary"  :to="item.buttonLink">
                 <span>Find Out More</span>
             </router-link>
         </template>

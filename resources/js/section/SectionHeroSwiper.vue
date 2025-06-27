@@ -46,7 +46,7 @@
                     <div v-if="index === 0" class="flex slide__cities">
                         <div v-for="(image, imgIndex) in slide.images" :key="imgIndex" class="card slide__city-card">
                             <img :src="image" :alt="`Image of ${slide.cityNames[imgIndex]}`"
-                                class="image image--small box--small lazyload slide__city-image" />
+                                class="image image--small box--small slide__city-image" loading="lazy" />
                             <div class="text slide__city-name">{{ slide.cityNames[imgIndex] }}</div>
                         </div>
                     </div>

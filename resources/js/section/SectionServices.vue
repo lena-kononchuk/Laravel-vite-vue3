@@ -18,7 +18,7 @@
           >
             <div class="image image--large image--spaced">
               <slot name="image" :item="item">
-                <img :src="item.image" alt="images" class="lazyload" />
+                <img :src="item.image" alt="images" loading="lazy" />
               </slot>
             </div>
 

@@ -114,7 +114,7 @@
     <section-services-items :items="servicesItems">
         <template #title> How We Can Help</template>
         <template #text>
-            <div>
+            <div class="box">
                 Leaving your home country to settle in another is always accompanied by complex immigration
                 processes such as registration, finding housing, signing documents, opening a bank account, finding
                 schooling for your children, and much more. This process can make anyone feel stressed and uncertain
@@ -125,12 +125,24 @@
                 to
                 Cyprus.
             </div>
-            <div class="box3x purple">
-                <ul style="list-style: none;">
-                    <li>Business Relocation</li>
-                    <li>Family Relocation</li>
-                    <li>Investment Plans</li>
+            <div class="box purple">
+                <ul class="navbar__links"
+                    style="list-style-type: none;">
+                    <li class="box--small">
+                        <router-link class="h4 purple link"
+                                     to="/services-investments">Investments opportunities</router-link>
+                    </li>
+                    <li class="box--small">
+                        <router-link class="h4 purple link"
+                                     to="/services-business">Business relocation</router-link>
+                    </li>
+                    <li class="box--small">
+                        <router-link class="h4 purple link"
+                                     to="/services-family">Family
+                            relocation</router-link>
+                    </li>
                 </ul>
+
             </div>
             <div>
                 We want you to feel confident in your decision to relocate to Cyprus, as we take care of the challenging
